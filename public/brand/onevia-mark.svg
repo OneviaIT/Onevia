@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none" role="img" aria-label="Onevia mark">
+  <defs>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff5d6c"/>
+      <stop offset="60%" stop-color="#ef233c"/>
+      <stop offset="100%" stop-color="#b0001a"/>
+    </radialGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g transform="translate(50 50)">
+    <circle r="40" fill="none" stroke="#ef233c" stroke-opacity="0.12" stroke-width="1.5"/>
+    <circle r="30" fill="none" stroke="#ef233c" stroke-opacity="0.3" stroke-width="1.5"/>
+    <circle r="20" fill="none" stroke="#ef233c" stroke-opacity="0.55" stroke-width="1.5"/>
+    <path d="M0 0 L0 -30" stroke="#ef233c" stroke-width="1.5" stroke-opacity="0.45"/>
+    <circle cx="0" cy="-30" r="3.5" fill="#ef233c"/>
+    <circle cx="40" cy="0" r="2.6" fill="#ef233c" fill-opacity="0.6"/>
+    <circle cx="-30" cy="12" r="2.2" fill="#ef233c" fill-opacity="0.4"/>
+    <circle r="7" fill="url(#core)" filter="url(#glow)"/>
+  </g>
+</svg>

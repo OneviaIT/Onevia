@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="120" viewBox="0 0 420 120" fill="none" role="img" aria-label="Onevia">
+  <defs>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd2d7"/>
+      <stop offset="30%" stop-color="#ff5d6c"/>
+      <stop offset="70%" stop-color="#ef233c"/>
+      <stop offset="100%" stop-color="#8f0014"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ef233c" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ef233c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="orbit" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff5d6c"/>
+      <stop offset="50%" stop-color="#ef233c"/>
+      <stop offset="100%" stop-color="#7a0012"/>
+    </linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="2.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .core  { transform-box: fill-box; transform-origin: center; animation: breathe 3.2s ease-in-out infinite; }
+      .moon-back, .moon-front { animation: moon 7s linear infinite; }
+      .moon-back  { opacity: 0; animation-name: moonback; }
+      .moon-front { opacity: 1; animation-name: moonfront; }
+      @keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+      /* back half visible for first 50% of the loop, front half for the second 50% */
+      @keyframes moonback  { 0%,49.9% { opacity: 1; } 50%,100% { opacity: 0; } }
+      @keyframes moonfront { 0%,49.9% { opacity: 0; } 50%,100% { opacity: 1; } }
+      @media (prefers-reduced-motion: reduce) { .core,.moon-back,.moon-front { animation: none; } }
+    </style>
+  </defs>
+
+  <!-- Saturn mark: fixed tilted ring, planet, moon orbiting behind + in front -->
+  <g transform="translate(60 60)">
+    <circle r="30" fill="url(#halo)"/>
+
+    <!-- tilted frame: rotate then flatten so a circle reads as an elliptical ring -->
+    <g transform="rotate(-45)">
+      <!-- back of ring + moon traversing behind the planet -->
+      <g transform="scale(1 0.34)">
+        <path d="M -52 0 A 52 52 0 0 1 52 0" fill="none" stroke="url(#orbit)" stroke-width="4" stroke-opacity="0.55"/>
+        <g class="moon-back">
+          <circle cx="52" cy="0" r="7" fill="#ff8a94">
+            <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="7s" repeatCount="indefinite"/>
+          </circle>
+        </g>
+      </g>
+
+      <!-- planet -->
+      <circle r="17" fill="url(#core)" filter="url(#glow)" class="core"/>
+
+      <!-- front of ring + moon traversing in front of the planet -->
+      <g transform="scale(1 0.34)">
+        <path d="M 52 0 A 52 52 0 0 1 -52 0" fill="none" stroke="url(#orbit)" stroke-width="4"/>
+        <g class="moon-front">
+          <circle cx="52" cy="0" r="7" fill="#ff8a94" filter="url(#glow)">
+            <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="7s" repeatCount="indefinite"/>
+          </circle>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="132" y="74" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="46" font-weight="800" letter-spacing="-2" fill="#ffffff">One<tspan fill="#ef233c">via</tspan></text>
+</svg>

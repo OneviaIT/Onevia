@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { ArrowRight, Menu, X } from 'lucide-react';
-import { Logo } from './Logo';
+import { AtomLogo } from './AtomLogo';
 import { navItems } from '../data/site';
 
 export function Navbar() {
@@ -19,7 +19,7 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:pt-6">
       <nav className="mx-auto flex max-w-5xl items-center justify-between rounded-full border border-white/10 bg-black/60 px-5 py-3 shadow-2xl backdrop-blur-xl">
         <Link to="/" aria-label="Onevia home" onClick={() => setOpen(false)}>
-          <Logo size={28} wordmarkClassName="text-lg" />
+          <AtomLogo size={34} wordmarkClassName="text-lg" />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">

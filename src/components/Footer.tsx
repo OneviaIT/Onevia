@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Logo } from './Logo';
+import { AtomLogo } from './AtomLogo';
 import { company, services } from '../data/site';
 
 const companyLinks = [
@@ -21,7 +21,7 @@ export function Footer() {
         <div className="mb-16 grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-5">
           <div className="col-span-2">
             <Link to="/" aria-label="Onevia home">
-              <Logo size={44} wordmarkClassName="text-2xl" />
+              <AtomLogo size={52} wordmarkClassName="text-2xl" />
             </Link>
             <p className="mt-6 max-w-xs text-zinc-500">
               Everything as a Service. One partner. Infinite possibilities — your vision, our

@@ -126,6 +126,85 @@
     opacity: 0.4;
   }
 
+  /* ---- Saturn logo (planet + tilted ring + orbiting moon) ---- */
+  .saturn {
+    position: relative;
+    display: inline-block;
+    perspective: 260px;
+  }
+  .saturn-3d {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transform: rotateZ(-45deg) rotateX(68deg);
+  }
+  /* soft ambient glow behind the planet */
+  .saturn-glow {
+    position: absolute;
+    inset: 14%;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(239, 35, 60, 0.55), transparent 70%);
+    filter: blur(2px);
+  }
+  /* the planet — a shaded red sphere, upright facing the viewer */
+  .saturn-planet {
+    position: absolute;
+    inset: 30%;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 35% 30%, #ffd2d7 0%, #ff5d6c 28%, #ef233c 62%, #8f0014 100%);
+    box-shadow: 0 0 14px rgba(239, 35, 60, 0.75), inset -3px -3px 8px rgba(0, 0, 0, 0.55);
+    transform: rotateX(-68deg);
+    animation: saturn-breathe 3.2s ease-in-out infinite;
+  }
+  /* the ring sits on the tilted 3D plane */
+  .saturn-ring {
+    position: absolute;
+    inset: 4%;
+    border-radius: 9999px;
+    border: 2.5px solid rgba(239, 35, 60, 0.85);
+    box-shadow: 0 0 10px rgba(239, 35, 60, 0.35), inset 0 0 8px rgba(239, 35, 60, 0.25);
+    transform-style: preserve-3d;
+  }
+  .saturn-ring-inner {
+    position: absolute;
+    inset: 16%;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(255, 138, 148, 0.5);
+  }
+  /* the moon rides the ring plane and orbits (goes behind + in front) */
+  .saturn-moon {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    border-radius: 9999px;
+    background: #ff8a94;
+    box-shadow: 0 0 8px 1px #ef233c;
+  }
+  .saturn-orbit {
+    position: absolute;
+    inset: 4%;
+    border-radius: 9999px;
+    transform-style: preserve-3d;
+    animation: saturn-spin 7s linear infinite;
+  }
+  @keyframes saturn-spin {
+    to {
+      transform: rotateZ(360deg);
+    }
+  }
+  @keyframes saturn-breathe {
+    0%,
+    100% {
+      box-shadow: 0 0 12px rgba(239, 35, 60, 0.6), inset -3px -3px 8px rgba(0, 0, 0, 0.55);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(239, 35, 60, 0.95), inset -3px -3px 8px rgba(0, 0, 0, 0.55);
+    }
+  }
+
   /* ---- Scroll reveal ---- */
   .reveal {
     opacity: 0;

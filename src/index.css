@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent-red: #ef233c;
+  --accent-red-glow: rgba(239, 35, 60, 0.5);
+  --terminal-green: #33ff00;
+  --gradient-angle: 0deg;
+}
+
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--accent-red);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-red);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* ---- Parallax star fields ---- */
+  .stars-1 {
+    box-shadow: 234px 124px #fff, 654px 345px #fff, 876px 12px #fff, 1200px 800px #fff,
+      400px 1500px #fff, 1800px 200px #fff, 100px 1000px #fff, 900px 1900px #fff,
+      500px 600px #fff, 1400px 100px #fff, 300px 400px #fff, 1600px 1200px #fff;
+  }
+  .stars-2 {
+    box-shadow: 123px 456px #fff, 789px 234px #fff, 456px 890px #fff, 1100px 300px #fff,
+      200px 1200px #fff, 1500px 500px #fff, 600px 1700px #fff, 1300px 900px #fff;
+  }
+
+  /* ---- Faint grid overlay ---- */
+  .bg-grid {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+    mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+  }
+
+  /* ---- Shiny conic-gradient border button ---- */
+  .conic-border {
+    position: relative;
+    border-radius: 9999px;
+    background: conic-gradient(
+        from var(--gradient-angle),
+        transparent 0%,
+        var(--accent-red) 10%,
+        var(--accent-red) 25%,
+        transparent 40%,
+        transparent 100%
+      )
+      border-box;
+    animation: border-spin 3s linear infinite;
+  }
+  .conic-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: #050505;
+  }
+  @keyframes border-spin {
+    to {
+      --gradient-angle: 360deg;
+    }
+  }
+
+  /* ---- Text stroke (giant footer wordmark) ---- */
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+    color: transparent;
+  }
+
+  /* ---- Hero headline underline swish ---- */
+  .swish-path {
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+    animation: swish-draw 1s ease-out 0.8s forwards;
+  }
+  @keyframes swish-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* ---- Terminal section ---- */
+  .terminal-pane {
+    background: var(--terminal-green-bg, #0a0a0a);
+    position: relative;
+  }
+  .terminal-glow {
+    text-shadow: 0 0 5px rgba(51, 255, 0, 0.5);
+  }
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.25) 3px,
+      rgba(0, 0, 0, 0) 4px
+    );
+    opacity: 0.4;
+  }
+
+  /* ---- Scroll reveal ---- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

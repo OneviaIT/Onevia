@@ -18,7 +18,7 @@ operate with one accountable partner.
 
 - **Red Noir** (primary): pure-black canvas, oxblood→black gradient, parallax star fields, a central
   red glow, a masked grid, and a single rationed accent red `#ef233c`. Fonts: Manrope (display),
-  Inter (body), JetBrains Mono (mono/terminal).
+  Inter (body), sans-serif (mono/terminal labels).
 - **Terminal CLI** (signature section): neon green `#33ff00`, monospace, 0px radius, CRT scanlines,
   typewriter command lines, animated ASCII progress bar, and a blinking cursor — used on the home
   page and in each service-detail snippet, and on the 404 page.

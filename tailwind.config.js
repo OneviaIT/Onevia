@@ -20,7 +20,7 @@ export default {
       fontFamily: {
         display: ['Manrope', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        mono: ['sans-serif'],
       },
       keyframes: {
         fadeInUp: {

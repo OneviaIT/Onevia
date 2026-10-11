@@ -24,7 +24,7 @@ export function Footer() {
               <AtomLogo size={52} wordmarkClassName="text-2xl" />
             </Link>
             <p className="mt-6 max-w-xs text-zinc-500">
-              Everything as a Service. One partner. Infinite possibilities — your vision, our
+              Everything as a Service. One partner. Infinite possibilities. Your vision, our
               technology.
             </p>
             <p className="mt-4 font-mono text-xs uppercase tracking-widest text-zinc-600">

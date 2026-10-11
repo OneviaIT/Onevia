@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ArrowRight, Search } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, Eyebrow } from '../components/ui';
+import { useSeo } from '../lib/useSeo';
 
 type Post = {
   title: string;
@@ -15,7 +16,7 @@ const posts: Post[] = [
   {
     title: 'Everything as a Service: why one partner beats a dozen vendors',
     excerpt:
-      'The hidden cost of multi-vendor stacks — and how a single accountable partner with shared context changes delivery economics.',
+      'The hidden cost of multi-vendor stacks, and how a single accountable partner with shared context changes delivery economics.',
     category: 'Strategy',
     readTime: '6 min',
     featured: true,
@@ -32,6 +33,12 @@ const categories = ['All', 'Strategy', 'SaaS', 'AIaaS', 'DevOpsaaS', 'SREaaS', '
 
 export function Resources() {
   useScrollReveal();
+  useSeo({
+    title: 'Resources | Insights on SaaS, AI, Cloud, DevOps & SRE | Onevia',
+    description:
+      'Practical guides and insights from Onevia on SaaS, AI, cloud, DevOps, SRE, QA and custom engineering, written to help teams build, scale and operate software reliably.',
+    path: '/resources',
+  });
   const [cat, setCat] = useState('All');
   const [query, setQuery] = useState('');
 

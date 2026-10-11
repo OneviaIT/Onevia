@@ -4,9 +4,16 @@ import { useScrollReveal } from '../lib/useScrollReveal';
 import { ShinyButton, GhostButton, Reveal, SectionHeading, ArrowLink } from '../components/ui';
 import { TerminalSection } from '../components/TerminalSection';
 import { services, engagement, integrations, stats, company } from '../data/site';
+import { useSeo } from '../lib/useSeo';
 
 export function Home() {
   useScrollReveal();
+  useSeo({
+    title: 'Onevia | Everything as a Service Technology Partner in Sri Lanka',
+    description:
+      'Onevia is a Sri Lanka based technology partner delivering Everything as a Service. One accountable team to build, scale, and operate your software across SaaS, AI, cloud, QA, DevOps, SRE and custom engineering.',
+    path: '/',
+  });
 
   return (
     <>
@@ -62,8 +69,8 @@ export function Home() {
           </h1>
 
           <p className="animate-fade-in-up mx-auto mb-10 max-w-2xl text-lg text-zinc-400 md:text-xl">
-            From SaaS and backends to AI, QA, DevOps, SRE, cloud and custom engineering — Onevia is
-            one accountable partner across the entire software lifecycle: build, scale, and operate.
+            Onevia is your one accountable software partner to build, scale, and operate across the
+            entire software lifecycle, delivering reliable engineering outcomes for growing teams.
           </p>
 
           <div className="animate-fade-in-up flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -106,7 +113,7 @@ export function Home() {
                 One provider for the <span className="text-accent">entire stack</span>
               </>
             }
-            sub="Eight ways to engage — as a single service or combined into one integrated solution with shared context."
+            sub="Eight ways to engage, as a single service or combined into one integrated solution with shared context."
           />
         </Reveal>
 
@@ -127,7 +134,7 @@ export function Home() {
                   <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(239,35,60,0.12),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <Icon className={`mb-5 h-7 w-7 ${s.accent}`} />
                   <h3 className={`font-bold ${large ? 'text-3xl' : 'text-xl'} mb-2`}>
-                    {large ? `${s.abbr} — ${s.tagline}` : s.abbr}
+                    {large ? `${s.abbr}: ${s.tagline}` : s.abbr}
                   </h3>
                   <p className={`text-zinc-400 ${large ? 'max-w-md text-lg' : 'text-sm'}`}>
                     {large ? s.description : s.short}
@@ -158,7 +165,7 @@ export function Home() {
                 Modular engagements, <span className="text-accent">one shared context</span>
               </>
             }
-            sub="Every engagement starts with a short discovery conversation — then a clear scope, architecture, and delivery plan before any build work begins."
+            sub="Every engagement starts with a short discovery conversation, then a clear scope, architecture, and delivery plan before any build work begins."
           />
         </Reveal>
         <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-4">
@@ -208,7 +215,7 @@ export function Home() {
                 'One accountable team, one plan',
                 'Shared context across every service',
                 'Build, scale, and operate end-to-end',
-                'Modular — scale up or down anytime',
+                'Modular: scale up or down anytime',
               ].map((t) => (
                 <li key={t} className="flex items-center gap-3">
                   <Check className="h-5 w-5 shrink-0 text-accent" /> {t}
@@ -244,11 +251,11 @@ export function Home() {
             ))}
           </div>
           <h3 className="mb-8 font-display text-3xl font-bold leading-tight tracking-tight text-black md:text-5xl">
-            “One partner across our product, backend, and reliability work — with shared context, we
+            “One partner across our product, backend, and reliability work. With shared context, we
             move faster and spend less time coordinating vendors.”
           </h3>
           <div className="font-mono text-sm font-bold uppercase tracking-widest text-black/80">
-            Illustrative — engagement outcomes vary by scope
+            Illustrative: engagement outcomes vary by scope
           </div>
         </div>
       </section>

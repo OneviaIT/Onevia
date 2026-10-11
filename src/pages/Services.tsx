@@ -3,9 +3,16 @@ import { ArrowRight, Check, X } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, SectionHeading, ShinyButton, Eyebrow } from '../components/ui';
 import { services } from '../data/site';
+import { useSeo } from '../lib/useSeo';
 
 export function Services() {
   useScrollReveal();
+  useSeo({
+    title: 'Services | SaaS, AI, Cloud, DevOps, SRE & QA | Onevia Sri Lanka',
+    description:
+      'Explore Onevia services: SaaS, Backend, AI, QA, DevOps, SRE, cloud and custom software engineering. One accountable Sri Lanka based partner across the entire software lifecycle.',
+    path: '/services',
+  });
 
   return (
     <>
@@ -89,7 +96,7 @@ export function Services() {
                   'One accountable partner',
                   'Shared context across services',
                   'Consistent standards everywhere',
-                  'Modular — scale up or down',
+                  'Modular: scale up or down',
                 ].map((t) => (
                   <li key={t} className="flex items-center gap-3">
                     <Check className="h-5 w-5 shrink-0 text-accent" /> {t}

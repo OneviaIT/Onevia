@@ -1,12 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-const ASCII = ` ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗ █████╗
-██╔═══██╗████╗  ██║██╔════╝██║   ██║██║██╔══██╗
-██║   ██║██╔██╗ ██║█████╗  ██║   ██║██║███████║
-██║   ██║██║╚██╗██║██╔══╝  ╚██╗ ██╔╝██║██╔══██║
-╚██████╔╝██║ ╚████║███████╗ ╚████╔╝ ██║██║  ██║
- ╚═════╝ ╚═╝  ╚═══╝╚══════╝  ╚═══╝  ╚═╝╚═╝  ╚═╝`;
-
 type Line =
   | { kind: 'cmd'; text: string }
   | { kind: 'info'; text: string }
@@ -100,9 +93,9 @@ export function TerminalSection({ title = 'ONEVIA ENGAGEMENT ENGINE v1.0', lines
             +--- {title} ---+
           </div>
 
-          <pre className="mb-8 overflow-x-auto text-[10px] leading-[1.15] opacity-80 sm:text-xs">
-            {ASCII}
-          </pre>
+          <div className="mb-8 select-none text-5xl font-bold leading-none tracking-[0.3em] sm:text-7xl">
+            ONEVIA
+          </div>
 
           <div className="flex-1 space-y-2 text-sm">
             <div className="flex flex-wrap gap-2">

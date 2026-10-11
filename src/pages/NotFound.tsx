@@ -1,7 +1,12 @@
 import { ArrowLeft } from 'lucide-react';
 import { ShinyButton } from '../components/ui';
+import { useSeo } from '../lib/useSeo';
 
 export function NotFound() {
+  useSeo({
+    title: 'Page Not Found | Onevia',
+    description: 'The page you are looking for could not be found. Return to the Onevia homepage.',
+  });
   return (
     <section className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-4 text-center">
       <div
@@ -15,7 +20,7 @@ export function NotFound() {
           <div>
             <span className="opacity-50">onevia@cloud:~$</span> cd {window.location.pathname}
           </div>
-          <div className="text-terminal-error">[ERR] 404 — route not found</div>
+          <div className="text-terminal-error">[ERR] 404: route not found</div>
           <div className="flex gap-2">
             <span className="opacity-50">onevia@cloud:~$</span>
             <span className="animate-blink">█</span>

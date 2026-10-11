@@ -3,9 +3,16 @@ import { Mail, Phone, MapPin, ChevronRight, Check } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, Eyebrow } from '../components/ui';
 import { company, services, faqs } from '../data/site';
+import { useSeo } from '../lib/useSeo';
 
 export function Contact() {
   useScrollReveal();
+  useSeo({
+    title: 'Contact Onevia | Book a Discovery Call | Sri Lanka',
+    description:
+      'Get in touch with Onevia in Colombo, Sri Lanka. Book a free discovery call to scope your SaaS, AI, cloud, DevOps, SRE, QA or custom engineering project.',
+    path: '/contact',
+  });
   const [sent, setSent] = useState(false);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -62,7 +69,7 @@ export function Contact() {
                   <span className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent/15 text-accent">
                     <Check className="h-8 w-8" />
                   </span>
-                  <h2 className="font-display text-2xl font-bold">Thanks — message received</h2>
+                  <h2 className="font-display text-2xl font-bold">Thanks, message received</h2>
                   <p className="mt-3 max-w-xs text-zinc-400">
                     This is a demo form. Once wired to a backend, we’ll reply within one business day
                     to schedule your discovery call.
@@ -94,7 +101,7 @@ export function Contact() {
                       </option>
                       {services.map((s) => (
                         <option key={s.slug} value={s.slug} className="bg-zinc-900">
-                          {s.abbr} — {s.name}
+                          {s.abbr}: {s.name}
                         </option>
                       ))}
                       <option value="multiple" className="bg-zinc-900">

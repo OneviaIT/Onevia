@@ -2,23 +2,23 @@ import { ArrowRight } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, ShinyButton, GhostButton, Eyebrow, SectionHeading } from '../components/ui';
 import { company, values, engagement } from '../data/site';
+import { useSeo } from '../lib/useSeo';
 
 const timeline = [
-  { year: '2025', title: 'Onevia founded', body: 'Started with one conviction: companies need one accountable partner, not a dozen vendors.' },
-  { year: '2025', title: 'Service catalog defined', body: 'Six core “as a Service” offerings plus custom engineering and cloud, built to combine.' },
+  { year: '2026', title: 'Onevia founded', body: 'Started with one conviction: companies need one accountable partner, not a dozen vendors.' },
+  { year: '2026', title: 'Service catalog defined', body: 'Six core “as a Service” offerings plus custom engineering and cloud, built to combine.' },
   { year: 'Now', title: 'Taking on partners', body: 'Working with early teams to build, modernize, scale, and operate software end-to-end.' },
   { year: 'Next', title: 'Published case studies', body: 'Real outcomes from real engagements, shared as our partnerships mature.' },
 ];
 
-const team = [
-  { name: 'Founding Engineer', role: 'Platform & Architecture' },
-  { name: 'Founding Engineer', role: 'AI & Data' },
-  { name: 'Founding Engineer', role: 'DevOps & SRE' },
-  { name: 'Partnerships', role: 'Discovery & Delivery' },
-];
-
 export function About() {
   useScrollReveal();
+  useSeo({
+    title: 'About Onevia | One Accountable Technology Partner in Sri Lanka',
+    description:
+      'Onevia is a Sri Lanka based technology partner, consolidating software, AI, cloud, QA, DevOps and SRE into one accountable team so you can build, scale and operate without juggling vendors.',
+    path: '/about',
+  });
 
   return (
     <>
@@ -30,7 +30,7 @@ export function About() {
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-zinc-400">
             {company.name} is a single, consolidated technology partner delivering the full spectrum
-            of modern software and infrastructure capabilities “as a service” — so you can build,
+            of modern software and infrastructure capabilities “as a service”, so you can build,
             scale, and innovate without stitching together many specialized vendors.
           </p>
         </Reveal>
@@ -52,7 +52,7 @@ export function About() {
             <p>
               Onevia acts as <span className="text-white">one partner</span> across the whole
               lifecycle. Engage a single service or combine several into one integrated solution with
-              shared context — and scale the relationship up or down as you grow.
+              shared context, and scale the relationship up or down as you grow.
             </p>
           </Reveal>
         </div>
@@ -102,24 +102,6 @@ export function About() {
               <span className="mb-4 font-display text-4xl font-extrabold text-accent opacity-40">{s.n}</span>
               <h3 className="mb-2 text-xl font-bold">{s.title}</h3>
               <p className="text-sm text-zinc-400">{s.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="mx-auto w-full max-w-7xl px-4 pb-24">
-        <Reveal>
-          <SectionHeading eyebrow="Team" title="Senior people, accountable work" sub="Team profiles are placeholders pending publication." />
-        </Reveal>
-        <div className="mt-14 grid grid-cols-2 gap-6 md:grid-cols-4">
-          {team.map((m, i) => (
-            <Reveal key={m.role} delay={i * 70} className="rounded-xl border border-white/10 bg-zinc-900/40 p-6 text-center">
-              <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-accent/30 bg-accent/10 font-display text-2xl font-bold text-accent">
-                {m.name.charAt(0)}
-              </div>
-              <div className="font-bold">{m.name}</div>
-              <div className="text-sm text-zinc-500">{m.role}</div>
             </Reveal>
           ))}
         </div>

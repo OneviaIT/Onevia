@@ -4,11 +4,21 @@ import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, ShinyButton, GhostButton, Eyebrow } from '../components/ui';
 import { TerminalSection } from '../components/TerminalSection';
 import { getService, services, faqs } from '../data/site';
+import { useSeo } from '../lib/useSeo';
 
 export function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
   const service = slug ? getService(slug) : undefined;
   useScrollReveal([slug]);
+  useSeo({
+    title: service
+      ? `${service.name} | ${service.abbr} as a Service | Onevia Sri Lanka`
+      : 'Services | Onevia Sri Lanka',
+    description: service
+      ? `${service.description} Delivered by Onevia, your one accountable technology partner in Sri Lanka.`
+      : 'Onevia services across the entire software lifecycle.',
+    path: service ? `/services/${service.slug}` : '/services',
+  });
 
   if (!service) return <Navigate to="/services" replace />;
 

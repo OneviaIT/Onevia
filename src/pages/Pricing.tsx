@@ -4,6 +4,7 @@ import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, ShinyButton, Eyebrow } from '../components/ui';
 import { Link } from 'react-router-dom';
 import { tiers, faqs } from '../data/site';
+import { useSeo } from '../lib/useSeo';
 
 const matrix: { feature: string; project: boolean; partnership: boolean; enterprise: boolean }[] = [
   { feature: 'Discovery & delivery plan', project: true, partnership: true, enterprise: true },
@@ -26,6 +27,12 @@ function Cell({ on }: { on: boolean }) {
 
 export function Pricing() {
   useScrollReveal();
+  useSeo({
+    title: 'Pricing | Transparent Project & Partnership Plans | Onevia',
+    description:
+      'Transparent Onevia pricing: start with a single project or an ongoing partnership retainer. Get a clear scope, plan and price after a short discovery call.',
+    path: '/pricing',
+  });
   const [annual, setAnnual] = useState(true);
 
   return (
@@ -170,7 +177,7 @@ export function Pricing() {
             Get a transparent proposal
           </h2>
           <p className="mx-auto mb-10 max-w-xl text-lg text-zinc-400">
-            After a short discovery call, you’ll receive a clear scope, plan, and price — before any
+            After a short discovery call, you’ll receive a clear scope, plan, and price before any
             build work begins.
           </p>
           <ShinyButton to="/contact">

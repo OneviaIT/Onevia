@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowRight, MapPin, Clock, Heart, Globe, GraduationCap, Scale } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, ShinyButton, Eyebrow, SectionHeading } from '../components/ui';
+import { useSeo } from '../lib/useSeo';
 
 type Role = { title: string; team: string; location: string; type: string };
 
@@ -20,12 +21,18 @@ const teams = ['All', 'Engineering', 'AI', 'SRE', 'DevOps', 'QA', 'Sales', 'Desi
 const perks = [
   { icon: Globe, title: 'Remote-first', body: 'Work from anywhere with async-friendly collaboration.' },
   { icon: Heart, title: 'Real ownership', body: 'Accountable work with visible impact on real engagements.' },
-  { icon: GraduationCap, title: 'Learning budget', body: 'Grow across the full stack — not just one silo.' },
+  { icon: GraduationCap, title: 'Learning budget', body: 'Grow across the full stack, not just one silo.' },
   { icon: Scale, title: 'Balance', body: 'Sustainable pace and healthy on-call practices.' },
 ];
 
 export function Careers() {
   useScrollReveal();
+  useSeo({
+    title: 'Careers | Remote-First Engineering Jobs in Sri Lanka | Onevia',
+    description:
+      'Join Onevia, a remote-first technology partner based in Sri Lanka. Explore engineering, AI, SRE, DevOps and QA roles with real ownership and measurable impact.',
+    path: '/careers',
+  });
   const [team, setTeam] = useState('All');
   const filtered = roles.filter((r) => team === 'All' || r.team === team);
 
@@ -38,8 +45,8 @@ export function Careers() {
             Build the one platform for <span className="text-accent">everything</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-zinc-400">
-            We’re an emerging, remote-first partner founded in 2025. Join a team that works across the
-            whole stack — with real ownership and measurable impact.
+            We’re an emerging, remote-first partner founded in 2026. Join a team that works across the
+            whole stack, with real ownership and measurable impact.
           </p>
         </Reveal>
       </section>

@@ -12,15 +12,21 @@ import {
 
 export const company = {
   name: 'Onevia',
-  founded: 2025,
+  founded: 2026,
   tagline: 'Everything as a Service. One Partner. Infinite Possibilities.',
   altTagline: 'Your Vision. Our Technology. Onevia.',
   shortPitch:
-    'One accountable technology partner across the entire software lifecycle — build, scale, and operate.',
+    'One accountable technology partner across the entire software lifecycle: build, scale, and operate.',
+  // Production URL. Update if the live domain differs.
+  url: 'https://onevia.lk',
   // Placeholders pending owner input.
-  email: 'hello@onevia.example',
-  phone: '+1 (000) 000-0000',
-  location: 'Remote-first · HQ pending',
+  email: 'hello@onevia.lk',
+  phone: '+94 (00) 000 0000',
+  location: 'Colombo, Sri Lanka · Remote-first',
+  country: 'Sri Lanka',
+  region: 'Western Province',
+  city: 'Colombo',
+  geo: { lat: 6.9271, lng: 79.8612 },
   social: {
     x: '#',
     github: '#',
@@ -60,7 +66,7 @@ export const services: Service[] = [
     tagline: 'Ship product faster',
     short: 'End-to-end subscription product development.',
     description:
-      'From multi-tenant architecture and billing to onboarding, modernization, and ongoing enhancement — we build and run the product so you can focus on the business.',
+      'From multi-tenant architecture and billing to onboarding, modernization, and ongoing enhancement, we build and run the product so you can focus on the business.',
     icon: Box,
     accent: 'text-accent',
     capabilities: [
@@ -182,7 +188,7 @@ export const services: Service[] = [
     tagline: 'Bespoke, built right',
     short: 'Bespoke apps, integration & modernization.',
     description:
-      'Bespoke applications, systems integration, legacy modernization, and pragmatic technical architecture — engineered for maintainability and measurable value.',
+      'Bespoke applications, systems integration, legacy modernization, and pragmatic technical architecture, engineered for maintainability and measurable value.',
     icon: Code2,
     accent: 'text-blue-400',
     capabilities: [
@@ -230,17 +236,17 @@ export const engagement: EngagementStep[] = [
   {
     n: '02',
     title: 'Scope',
-    body: 'A proposed scope, architecture, and delivery plan — transparent and agreed before work starts.',
+    body: 'A proposed scope, architecture, and delivery plan, transparent and agreed before work starts.',
   },
   {
     n: '03',
     title: 'Build',
-    body: 'We design, engineer, and integrate — one accountable team across every layer of the stack.',
+    body: 'We design, engineer, and integrate with one accountable team across every layer of the stack.',
   },
   {
     n: '04',
     title: 'Operate',
-    body: 'Reliability, observability, and ongoing enhancement as a service — scaling up or down with you.',
+    body: 'Reliability, observability, and ongoing enhancement as a service, scaling up or down with you.',
   },
 ];
 
@@ -248,7 +254,7 @@ export const stats = [
   { value: '8', label: 'Services, one partner' },
   { value: '1', label: 'Accountable team' },
   { value: 'Build→Operate', label: 'Full lifecycle' },
-  { value: '2025', label: 'Founded' },
+  { value: '2026', label: 'Founded' },
 ];
 
 export const integrations = [
@@ -295,7 +301,7 @@ export const tiers: Tier[] = [
       'Full stack of aaS offerings',
       'Dedicated, accountable team',
       'Shared context across services',
-      'Flexible — scale up or down',
+      'Flexible: scale up or down',
       'Proactive reliability & support',
     ],
     cta: 'Start a partnership',
@@ -325,7 +331,7 @@ export const faqs: Faq[] = [
   },
   {
     q: 'Can I start with just one service?',
-    a: 'Yes. Onevia is modular by design. Start with a single offering — say AIaaS or DevOpsaaS — and add more over time, all with shared context across one accountable team.',
+    a: 'Yes. Onevia is modular by design. Start with a single offering, say AIaaS or DevOpsaaS, and add more over time, all with shared context across one accountable team.',
   },
   {
     q: 'How is pricing determined?',
@@ -333,14 +339,14 @@ export const faqs: Faq[] = [
   },
   {
     q: 'Are the case studies real?',
-    a: 'Onevia is an early-stage brand founded in 2025. Current examples are illustrative concepts; real customer case studies will be published as engagements complete.',
+    a: 'Onevia is an early-stage brand founded in 2026. Current examples are illustrative concepts; real customer case studies will be published as engagements complete.',
   },
 ];
 
 export const values = [
   {
     title: 'Partnership',
-    body: 'One accountable partner across the whole stack — your outcomes are our mandate.',
+    body: 'One accountable partner across the whole stack; your outcomes are our mandate.',
   },
   {
     title: 'Practical',
@@ -348,10 +354,10 @@ export const values = [
   },
   {
     title: 'Responsible',
-    body: 'Careful, measured implementation — security, reliability, and maintainability first.',
+    body: 'Careful, measured implementation: security, reliability, and maintainability first.',
   },
   {
     title: 'Transparent',
-    body: 'Clear scope, clear plan, clear communication — before and throughout every engagement.',
+    body: 'Clear scope, clear plan, clear communication, before and throughout every engagement.',
   },
 ];

@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 type AtomLogoProps = {
   size?: number;
   withWordmark?: boolean;
@@ -6,11 +8,18 @@ type AtomLogoProps = {
   wordmarkClassName?: string;
 };
 
+/** Path to the real OV1 logo image (transparent background). */
+const LOGO_SRC = '/brand/onevia-ov1.png';
+
+/** Intrinsic dimensions of the logo artwork. */
+const LOGO_W = 357;
+const LOGO_H = 200;
+
 /**
- * Onevia "Saturn" mark — a glowing red planet with a fixed tilted ring and a
- * single moon that orbits around it, passing behind and in front of the planet
- * (real CSS 3D z-sorting). The planet gently breathes. Animation is CSS-driven
- * and automatically disabled under `prefers-reduced-motion`.
+ * Onevia "OV1" mark — renders the actual (transparent) logo artwork. A white
+ * lightning highlight sweeps diagonally across the mark, clipped exactly to the
+ * logo shape through an alpha mask built from the image. The sweep is disabled
+ * when `animated` is false.
  */
 export function AtomLogo({
   size = 40,
@@ -19,25 +28,68 @@ export function AtomLogo({
   className = '',
   wordmarkClassName = '',
 }: AtomLogoProps) {
+  const uid = useId().replace(/[:]/g, '');
+  const maskId = `ov1-mask-${uid}`;
+  const gradId = `ov1-grad-${uid}`;
+
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
-      <span
-        className="saturn shrink-0"
-        style={{ width: size, height: size }}
+      <svg
+        viewBox={`0 0 ${LOGO_W} ${LOGO_H}`}
+        height={size}
+        width={size * (LOGO_W / LOGO_H)}
+        className="shrink-0 overflow-visible"
         role="img"
         aria-label="Onevia"
+        style={{ filter: 'drop-shadow(0 0 6px rgba(239, 35, 60, 0.45))' }}
       >
-        <span className="saturn-glow" />
-        <span className="saturn-3d">
-          <span className="saturn-ring">
-            <span className="saturn-ring-inner" />
-          </span>
-          <span className="saturn-planet" />
-          <span className="saturn-orbit" style={animated ? undefined : { animation: 'none' }}>
-            <span className="saturn-moon" />
-          </span>
-        </span>
-      </span>
+        <defs>
+          <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="#ffffff" stopOpacity="0" />
+            <stop offset="0.45" stopColor="#ffffff" stopOpacity="0.9" />
+            <stop offset="0.55" stopColor="#ffffff" stopOpacity="1" />
+            <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+          </linearGradient>
+
+          {/* Alpha mask = the logo shape, so the shine only shows on the mark. */}
+          <mask id={maskId} maskUnits="userSpaceOnUse" style={{ maskType: 'alpha' }}>
+            <image
+              href={LOGO_SRC}
+              x="0"
+              y="0"
+              width={LOGO_W}
+              height={LOGO_H}
+              preserveAspectRatio="xMidYMid meet"
+            />
+          </mask>
+        </defs>
+
+        {/* The logo artwork (transparent background) */}
+        <image
+          href={LOGO_SRC}
+          x="0"
+          y="0"
+          width={LOGO_W}
+          height={LOGO_H}
+          preserveAspectRatio="xMidYMid meet"
+        />
+
+        {/* White lightning sweep, clipped to the logo shape */}
+        <g mask={`url(#${maskId})`}>
+          <rect
+            x="-120"
+            y="-40"
+            width="70"
+            height="280"
+            fill={`url(#${gradId})`}
+            transform="skewX(-18)"
+          >
+            {animated && (
+              <animate attributeName="x" from="-140" to="440" dur="2.4s" repeatCount="indefinite" />
+            )}
+          </rect>
+        </g>
+      </svg>
 
       {withWordmark && (
         <span className={`font-display font-extrabold tracking-tight ${wordmarkClassName}`}>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Two AI agents bargaining and settling a payment">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a0509"/><stop offset="1" stop-color="#07070a"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ef233c" stop-opacity=".55"/><stop offset="1" stop-color="#ef233c" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <circle cx="320" cy="190" r="140" fill="url(#glow)"/>
+  <g stroke="#fff" stroke-opacity=".04">
+    <path d="M0 60H640M0 120H640M0 180H640M0 240H640M0 300H640M80 0V360M160 0V360M240 0V360M320 0V360M400 0V360M480 0V360M560 0V360"/>
+  </g>
+  <!-- left agent -->
+  <g transform="translate(70 130)">
+    <line x1="60" y1="0" x2="60" y2="-18" stroke="#ef233c" stroke-width="4"/><circle cx="60" cy="-22" r="6" fill="#ef233c"/>
+    <rect x="10" y="0" width="100" height="80" rx="22" fill="#18181b" stroke="#ef233c" stroke-width="3"/>
+    <circle cx="42" cy="38" r="9" fill="#ef233c"/><circle cx="78" cy="38" r="9" fill="#ef233c"/>
+    <path d="M44 60q16 10 32 0" stroke="#fff" stroke-opacity=".7" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <rect x="25" y="88" width="70" height="60" rx="16" fill="#18181b" stroke="#ffffff" stroke-opacity=".25" stroke-width="2"/>
+    <text x="60" y="126" text-anchor="middle" font-family="monospace" font-size="14" fill="#fff" fill-opacity=".7">BUYER</text>
+  </g>
+  <!-- right agent -->
+  <g transform="translate(450 130)">
+    <line x1="60" y1="0" x2="60" y2="-18" stroke="#60a5fa" stroke-width="4"/><circle cx="60" cy="-22" r="6" fill="#60a5fa"/>
+    <rect x="10" y="0" width="100" height="80" rx="22" fill="#18181b" stroke="#60a5fa" stroke-width="3"/>
+    <rect x="30" y="30" width="22" height="14" rx="4" fill="#60a5fa"/><rect x="68" y="30" width="22" height="14" rx="4" fill="#60a5fa"/>
+    <path d="M44 62h32" stroke="#fff" stroke-opacity=".7" stroke-width="3" stroke-linecap="round"/>
+    <rect x="25" y="88" width="70" height="60" rx="16" fill="#18181b" stroke="#ffffff" stroke-opacity=".25" stroke-width="2"/>
+    <text x="60" y="126" text-anchor="middle" font-family="monospace" font-size="14" fill="#fff" fill-opacity=".7">SELLER</text>
+  </g>
+  <!-- offers -->
+  <g font-family="monospace" font-size="15" font-weight="700">
+    <rect x="195" y="70" width="110" height="38" rx="19" fill="#ef233c"/><text x="250" y="94" text-anchor="middle" fill="#fff">Offer $42</text>
+    <path d="M215 108l-10 14 28-10z" fill="#ef233c"/>
+    <rect x="335" y="125" width="110" height="38" rx="19" fill="#27272a" stroke="#60a5fa" stroke-width="2"/><text x="390" y="149" text-anchor="middle" fill="#fff">Counter $50</text>
+    <rect x="215" y="180" width="110" height="38" rx="19" fill="#ef233c"/><text x="270" y="204" text-anchor="middle" fill="#fff">Offer $46</text>
+  </g>
+  <!-- settle -->
+  <g transform="translate(320 270)">
+    <circle r="34" fill="#18181b" stroke="#22c55e" stroke-width="3"/>
+    <path d="M-14 0l9 10 19-20" stroke="#22c55e" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="320" y="330" text-anchor="middle" font-family="monospace" font-size="14" fill="#fff" fill-opacity=".6" letter-spacing="3">DEAL AGREED · WALLET SETTLED</text>
+  <path d="M170 260q60 50 110 12M470 260q-60 50-110 12" stroke="#ffffff" stroke-opacity=".25" stroke-dasharray="5 6" fill="none"/>
+</svg>

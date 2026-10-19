@@ -197,33 +197,6 @@ export function Resources() {
           <ArrowLink to="/our-work">See our delivered projects</ArrowLink>
         </Reveal>
       </section>
-
-      {/* Newsletter */}
-      <section className="mx-auto w-full max-w-4xl px-4 py-24 text-center">
-        <Reveal>
-          <h2 className="mb-4 font-display text-3xl font-bold tracking-tighter md:text-5xl">
-            Get new field notes
-          </h2>
-          <p className="mx-auto mb-8 max-w-lg text-zinc-400">
-            Occasional, practical writing on building and operating software. No spam.
-          </p>
-          <form
-            className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="email"
-              required
-              placeholder="your@email.com"
-              aria-label="Email address"
-              className="flex-1 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-white transition-colors placeholder:text-zinc-500 focus:border-accent focus:outline-none"
-            />
-            <button className="rounded-full bg-accent px-8 py-3.5 font-bold text-white transition-all hover:brightness-110 active:scale-95">
-              Subscribe
-            </button>
-          </form>
-        </Reveal>
-      </section>
     </>
   );
 }

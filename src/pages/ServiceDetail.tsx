@@ -3,6 +3,7 @@ import { ArrowRight, Check, ChevronRight } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, ShinyButton, GhostButton, Eyebrow } from '../components/ui';
 import { TerminalSection } from '../components/TerminalSection';
+import { ConsultingSection } from '../components/ConsultingSection';
 import { getService, services, faqs } from '../data/site';
 import { useSeo } from '../lib/useSeo';
 
@@ -12,11 +13,11 @@ export function ServiceDetail() {
   useScrollReveal([slug]);
   useSeo({
     title: service
-      ? `${service.name} | ${service.abbr} as a Service | Onevia Sri Lanka`
-      : 'Services | Onevia Sri Lanka',
+      ? `${service.name} | ${service.abbr} as a Service | Onevia Labs Sri Lanka`
+      : 'Services | Onevia Labs Sri Lanka',
     description: service
-      ? `${service.description} Delivered by Onevia, your one accountable technology partner in Sri Lanka.`
-      : 'Onevia services across the entire software lifecycle.',
+      ? `${service.description} Delivered by Onevia Labs, your one accountable technology partner in Sri Lanka.`
+      : 'Onevia Labs services across the entire software lifecycle.',
     path: service ? `/services/${service.slug}` : '/services',
   });
 
@@ -57,6 +58,57 @@ export function ServiceDetail() {
         </Reveal>
       </section>
 
+      {/* Build to order / inbuilt platform */}
+      <section className="mx-auto w-full max-w-7xl px-4 pb-8">
+        <div className={`grid grid-cols-1 gap-5 ${service.inbuilt ? 'md:grid-cols-2' : ''}`}>
+          <Reveal className="rounded-xl border border-white/10 bg-zinc-900/40 p-8">
+            <span className="font-mono text-xs uppercase tracking-widest text-accent">
+              Built to your requirements
+            </span>
+            <h2 className="mb-3 mt-3 font-display text-2xl font-bold">
+              {service.abbr} designed around your needs
+            </h2>
+            <p className="text-zinc-400">{service.buildToOrder}</p>
+          </Reveal>
+          {service.inbuilt && (
+            <Reveal
+              delay={80}
+              className="rounded-xl border-2 border-accent bg-zinc-900/50 p-8 shadow-[0_0_40px_rgba(239,35,60,0.12)]"
+            >
+              <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                Inbuilt platform
+              </span>
+              <h2 className="mb-3 mt-3 font-display text-2xl font-bold">{service.inbuilt.title}</h2>
+              <p className="mb-4 text-zinc-300">{service.inbuilt.body}</p>
+              <ul className="space-y-2 text-sm text-white">
+                {service.inbuilt.points.map((p) => (
+                  <li key={p} className="flex items-center gap-3">
+                    <Check className="h-4 w-4 shrink-0 text-accent" /> {p}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          )}
+        </div>
+      </section>
+
+      {service.specialties && (
+        <section className="mx-auto w-full max-w-7xl px-4 pt-8">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {service.specialties.map((s, i) => (
+              <Reveal
+                key={s.title}
+                delay={i * 80}
+                className="rounded-xl border border-white/10 bg-zinc-900/30 p-8"
+              >
+                <h2 className="mb-3 font-display text-2xl font-bold">{s.title}</h2>
+                <p className="text-zinc-400">{s.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Capabilities */}
       <section className="mx-auto w-full max-w-7xl px-4 py-16">
         <Reveal>
@@ -92,12 +144,23 @@ export function ServiceDetail() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-7xl px-4 pt-8">
+        <Reveal className="flex flex-col items-start justify-between gap-4 rounded-xl border border-white/10 bg-zinc-900/30 p-8 md:flex-row md:items-center">
+          <p className="max-w-2xl text-zinc-300">
+            See how we have delivered {service.abbr} for real teams in our delivered projects.
+          </p>
+          <GhostButton to="/our-work">View our work</GhostButton>
+        </Reveal>
+      </section>
+
+      <ConsultingSection />
+
       {/* Terminal snippet */}
       <TerminalSection
         title={`ONEVIA · ${service.abbr.toUpperCase()}`}
         lines={[
           { kind: 'cmd', text: `onevia ${service.slug} --provision` },
-          { kind: 'info', text: '[PROCESS] Applying best-practice blueprint...' },
+          { kind: 'info', text: '[PROCESS] Applying best practice blueprint...' },
           { kind: 'ok', text: `[OK] ${service.capabilities[0]}` },
           { kind: 'ok', text: `[OK] ${service.capabilities[1]}` },
           { kind: 'ok', text: `[OK] ${service.capabilities[2]}` },

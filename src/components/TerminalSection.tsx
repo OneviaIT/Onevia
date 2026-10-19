@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type Line =
   | { kind: 'cmd'; text: string }
@@ -89,11 +90,11 @@ export function TerminalSection({ title = 'ONEVIA ENGAGEMENT ENGINE v1.0', lines
           className="scanlines relative flex min-h-[460px] flex-col border border-terminal-green/30 p-6 font-mono text-terminal-green terminal-glow"
           style={{ background: '#0a0a0a' }}
         >
-          <div className="mb-6 border-b border-terminal-green/20 pb-2 text-sm">
+          <div className="mb-6 break-words border-b border-terminal-green/20 pb-2 text-xs sm:text-sm">
             +--- {title} ---+
           </div>
 
-          <div className="mb-8 select-none text-5xl font-bold leading-none tracking-[0.3em] sm:text-7xl">
+          <div className="mb-8 select-none text-4xl font-bold leading-none tracking-[0.3em] sm:text-6xl md:text-7xl">
             ONEVIA
           </div>
 
@@ -116,7 +117,7 @@ export function TerminalSection({ title = 'ONEVIA ENGAGEMENT ENGINE v1.0', lines
                     );
                   if (l.kind === 'ok') return <div key={i}>{l.text}</div>;
                   return (
-                    <div key={i} className="flex items-center gap-3">
+                    <div key={i} className="flex flex-wrap items-center gap-x-3">
                       <span>{l.label}</span>
                       <ProgressBar percent={l.percent} animate={active} />
                     </div>
@@ -132,9 +133,12 @@ export function TerminalSection({ title = 'ONEVIA ENGAGEMENT ENGINE v1.0', lines
           </div>
 
           <div className="mt-10">
-            <button className="border border-terminal-green px-6 py-3 uppercase transition-colors hover:bg-terminal-green hover:text-black">
+            <Link
+              to="/contact"
+              className="inline-block border border-terminal-green px-6 py-3 uppercase transition-colors hover:bg-terminal-green hover:text-black"
+            >
               [ INITIATE ENGAGEMENT ]
-            </button>
+            </Link>
           </div>
         </div>
       </div>

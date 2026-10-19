@@ -41,7 +41,7 @@ function setCanonical(href: string) {
 export function useSeo({ title, description, path, image }: SeoOptions) {
   useEffect(() => {
     const canonicalPath = path ?? window.location.pathname;
-    const canonical = `${SITE_URL}${canonicalPath === '/' ? '/' : canonicalPath}`;
+    const canonical = `${SITE_URL}${canonicalPath}`;
     const shareImage = image
       ? image.startsWith('http')
         ? image

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { ArrowRight, Search } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
-import { Reveal, Eyebrow } from '../components/ui';
+import { Reveal, Eyebrow, ArrowLink } from '../components/ui';
 import { useSeo } from '../lib/useSeo';
 
 type Post = {
@@ -16,7 +16,7 @@ const posts: Post[] = [
   {
     title: 'Everything as a Service: why one partner beats a dozen vendors',
     excerpt:
-      'The hidden cost of multi-vendor stacks, and how a single accountable partner with shared context changes delivery economics.',
+      'The hidden cost of multi vendor stacks, and how a single accountable partner with shared context changes delivery economics.',
     category: 'Strategy',
     readTime: '6 min',
     featured: true,
@@ -25,33 +25,60 @@ const posts: Post[] = [
   { title: 'SLOs without the theatre', excerpt: 'Error budgets your team will actually use to make decisions.', category: 'SREaaS', readTime: '5 min' },
   { title: 'CI/CD that stays fast as you grow', excerpt: 'Pipeline patterns that scale from first commit to platform team.', category: 'DevOpsaaS', readTime: '7 min' },
   { title: 'Modernizing legacy software, safely', excerpt: 'Strangler patterns and incremental delivery over risky rewrites.', category: 'Custom', readTime: '9 min' },
-  { title: 'Cloud cost without the surprises', excerpt: 'Right-sizing, visibility, and guardrails for predictable spend.', category: 'Cloud', readTime: '6 min' },
-  { title: 'Designing multi-tenant SaaS from day one', excerpt: 'Isolation, billing, and onboarding decisions that compound.', category: 'SaaS', readTime: '7 min' },
+  { title: 'Cloud cost without the surprises', excerpt: 'Rightsizing, visibility, and guardrails for predictable spend.', category: 'Cloud', readTime: '6 min' },
+  { title: 'Designing multi tenant SaaS from day one', excerpt: 'Isolation, billing, and onboarding decisions that compound.', category: 'SaaS', readTime: '7 min' },
+  { title: 'Building a custom SaaS platform around your customers\u2019 requirements', excerpt: 'How to move from requirements to a launched, billable SaaS product without overbuilding.', category: 'SaaS', readTime: '8 min' },
+  { title: 'Agentic AI platforms: from demo to dependable', excerpt: 'Tool use, planning, human in the loop controls and observability for AI agents in production.', category: 'AIaaS', readTime: '9 min' },
+  { title: 'Adding AI to an existing product, safely', excerpt: 'Scoped data access, guardrails, evaluation and staged rollout when integrating AI into live products.', category: 'AIaaS', readTime: '8 min' },
+  { title: 'QA as a service: test automation that keeps pace with releases', excerpt: 'Manual, automated and CI integrated testing, and when a prebuilt QA platform beats building your own.', category: 'QAaaS', readTime: '6 min' },
+  { title: 'When to hire a consultant or an embedded expert', excerpt: 'Choosing between advisory work and adding a specialist to your team for AI, DevOps, SRE or QA.', category: 'Consulting', readTime: '5 min' },
 ];
 
-const categories = ['All', 'Strategy', 'SaaS', 'AIaaS', 'DevOpsaaS', 'SREaaS', 'Cloud', 'Custom'];
+const categories = ['All', 'Strategy', 'SaaS', 'AIaaS', 'QAaaS', 'DevOpsaaS', 'SREaaS', 'Cloud', 'Custom', 'Consulting'];
+
+const topics = [
+  {
+    title: 'SaaS platforms built to your requirements',
+    body: 'We design and build Software as a Service platforms around your customer requirements: multi tenant architecture, subscription billing, onboarding and continuous enhancement.',
+  },
+  {
+    title: 'AI, agentic platforms and safe integration',
+    body: 'Our AIaaS engineers build agentic AI platforms and integrate AI into existing products safely. An inbuilt AIaaS platform is also available for a faster start.',
+  },
+  {
+    title: 'QA as a service',
+    body: 'Manual and automated testing for API, web and mobile, with CI quality gates, plus an inbuilt QAaaS platform.',
+  },
+  {
+    title: 'DevOps and SRE, built to order',
+    body: 'CI/CD, infrastructure as code, observability, SLOs and incident management, built around your stack and reliability goals.',
+  },
+  {
+    title: 'Consultation and expert resource persons',
+    body: 'Advice from engineers who build and run software, or experienced specialists embedded in your team when you need them.',
+  },
+];
+
+const featured = posts.find((p) => p.featured) ?? posts[0];
+const rest = posts.filter((p) => p !== featured);
 
 export function Resources() {
-  useScrollReveal();
-  useSeo({
-    title: 'Resources | Insights on SaaS, AI, Cloud, DevOps & SRE | Onevia',
-    description:
-      'Practical guides and insights from Onevia on SaaS, AI, cloud, DevOps, SRE, QA and custom engineering, written to help teams build, scale and operate software reliably.',
-    path: '/resources',
-  });
   const [cat, setCat] = useState('All');
   const [query, setQuery] = useState('');
-
-  const featured = posts.find((p) => p.featured)!;
-  const rest = posts.filter((p) => !p.featured);
+  useScrollReveal([cat, query]);
+  useSeo({
+    title: 'Resources | Insights on SaaS, AI, Cloud, DevOps & SRE | Onevia Labs',
+    description:
+      'Guides from Onevia Labs on custom SaaS development, agentic AI platforms, safe AI integration, QAaaS, DevOps and SRE, plus consulting and expert resources, to help teams build, scale and operate software.',
+    path: '/resources',
+  });
 
   const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
     return rest.filter(
-      (p) =>
-        (cat === 'All' || p.category === cat) &&
-        (query === '' || p.title.toLowerCase().includes(query.toLowerCase())),
+      (p) => (cat === 'All' || p.category === cat) && (q === '' || p.title.toLowerCase().includes(q)),
     );
-  }, [cat, query, rest]);
+  }, [cat, query]);
 
   return (
     <>
@@ -155,6 +182,36 @@ export function Resources() {
             ))}
           </div>
         )}
+      </section>
+
+      {/* What we deliver */}
+      <section className="mx-auto w-full max-w-7xl px-4 py-16">
+        <Reveal>
+          <Eyebrow>What we deliver</Eyebrow>
+          <h2 className="max-w-3xl font-display text-3xl font-bold tracking-tighter md:text-5xl">
+            Software, AI and reliability, <span className="text-accent">built to your requirements</span>
+          </h2>
+          <p className="mt-4 max-w-3xl text-lg text-zinc-400">
+            Onevia Labs is a Sri Lanka based engineering partner. Everything we write about here is
+            something we build, run and support for clients.
+          </p>
+        </Reveal>
+        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {topics.map((t, i) => (
+            <Reveal
+              key={t.title}
+              delay={(i % 3) * 70}
+              className="rounded-xl border border-white/10 bg-zinc-900/40 p-6"
+            >
+              <h3 className="mb-2 font-display text-lg font-bold">{t.title}</h3>
+              <p className="text-sm text-zinc-400">{t.body}</p>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal className="mt-8 flex flex-wrap gap-6">
+          <ArrowLink to="/services">Explore our services</ArrowLink>
+          <ArrowLink to="/our-work">See our delivered projects</ArrowLink>
+        </Reveal>
       </section>
 
       {/* Newsletter */}

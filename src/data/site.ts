@@ -10,27 +10,39 @@ import {
   Cloud,
 } from 'lucide-react';
 
+export type Project = {
+  title: string;
+  client?: string;
+  category: string;
+  summary: string;
+  outcome?: string;
+  tags: string[];
+  image?: string;
+  url?: string;
+  year?: string;
+};
+
+// Add delivered projects here. The "Our work" section on Home renders from this list.
+export const projects: Project[] = [];
+
 export const company = {
-  name: 'Onevia',
+  name: 'Onevia Labs',
   founded: 2026,
   tagline: 'Everything as a Service. One Partner. Infinite Possibilities.',
-  altTagline: 'Your Vision. Our Technology. Onevia.',
+  altTagline: 'Your Vision. Our Technology. Onevia Labs.',
   shortPitch:
     'One accountable technology partner across the entire software lifecycle: build, scale, and operate.',
   // Production URL. Update if the live domain differs.
   url: 'https://onevia.lk',
-  // Placeholders pending owner input.
-  email: 'hello@onevia.lk',
-  phone: '+94 (00) 000 0000',
-  location: 'Colombo, Sri Lanka · Remote-first',
+  email: 'hello@onevialabs.com',
+  phone: '+94 76 070 4768',
+  location: 'Colombo, Sri Lanka',
   country: 'Sri Lanka',
   region: 'Western Province',
   city: 'Colombo',
   geo: { lat: 6.9271, lng: 79.8612 },
   social: {
-    x: '#',
-    github: '#',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/company/onevialabs',
   },
 };
 
@@ -38,10 +50,12 @@ export type NavItem = { label: string; to: string };
 
 export const navItems: NavItem[] = [
   { label: 'Services', to: '/services' },
+  { label: 'Our Work', to: '/our-work' },
   { label: 'Pricing', to: '/pricing' },
   { label: 'About', to: '/about' },
   { label: 'Resources', to: '/resources' },
   { label: 'Careers', to: '/careers' },
+  { label: 'Contact', to: '/contact' },
 ];
 
 export type Service = {
@@ -56,6 +70,9 @@ export type Service = {
   capabilities: string[];
   outcomes: string[];
   featured?: boolean;
+  buildToOrder: string;
+  inbuilt?: { title: string; body: string; points: string[] };
+  specialties?: { title: string; body: string }[];
 };
 
 export const services: Service[] = [
@@ -66,19 +83,21 @@ export const services: Service[] = [
     tagline: 'Ship product faster',
     short: 'End-to-end subscription product development.',
     description:
-      'From multi-tenant architecture and billing to onboarding, modernization, and ongoing enhancement, we build and run the product so you can focus on the business.',
+      'From multi tenant architecture and billing to onboarding, modernization, and ongoing enhancement, we build and run the product so you can focus on the business.',
     icon: Box,
     accent: 'text-accent',
     capabilities: [
-      'Multi-tenant architecture',
+      'Multi tenant architecture',
       'Billing & subscriptions',
       'Onboarding & activation',
       'Legacy modernization',
       'Ongoing enhancement',
       'Usage metering & plans',
     ],
-    outcomes: ['Faster time-to-market', 'Lower maintenance overhead', 'Predictable delivery'],
+    outcomes: ['Faster time to market', 'Lower maintenance overhead', 'Predictable delivery'],
     featured: true,
+    buildToOrder:
+      'We design and build Software as a Service platforms around your customer requirements: your workflows, your pricing model, your users. From multi tenant architecture to subscription billing and onboarding, we deliver a product that is yours, built to grow with your customer base.',
   },
   {
     slug: 'baas',
@@ -99,6 +118,8 @@ export const services: Service[] = [
       'Monitoring & alerting',
     ],
     outcomes: ['Secure by default', 'Scales with demand', 'Less ops burden'],
+    buildToOrder:
+      'Backends are designed around your data, traffic and security requirements: APIs, authentication, databases and serverless services, built and operated to your specification.',
   },
   {
     slug: 'aiaas',
@@ -118,8 +139,29 @@ export const services: Service[] = [
       'Model evaluation',
       'Guardrails & safety',
     ],
-    outcomes: ['Measurable productivity', 'Responsible deployment', 'Human-in-the-loop'],
+    outcomes: ['Measurable productivity', 'Responsible deployment', 'Human in the loop'],
     featured: true,
+    buildToOrder:
+      'Need something specific? We build AI solutions to your requirements, from knowledge assistants and workflow automation to fully custom agentic platforms.',
+    inbuilt: {
+      title: 'Ready to use AI platform',
+      body: 'Alongside custom builds, Onevia Labs offers an inbuilt AIaaS platform so you can start using AI in your business without building the foundations first.',
+      points: [
+        'Faster start than a ground up build',
+        'Guardrails and evaluation included',
+        'Extend or customise to your needs',
+      ],
+    },
+    specialties: [
+      {
+        title: 'Agentic AI platforms',
+        body: 'Our engineers build agentic platforms: AI agents that plan, use tools, call your systems and complete multi step work, with human in the loop controls and full observability.',
+      },
+      {
+        title: 'Safe integration into existing products',
+        body: 'We have experience adding AI to products you already run, safely: scoped data access, prompt and output guardrails, evaluation, and staged rollout so existing users and data are protected.',
+      },
+    ],
   },
   {
     slug: 'qaaas',
@@ -128,7 +170,7 @@ export const services: Service[] = [
     tagline: 'Quality as a standard',
     short: 'Manual + automated testing at scale.',
     description:
-      'Manual and automated testing across API, web and mobile, performance and load testing, plus CI-integrated quality gates and automation frameworks.',
+      'Manual and automated testing across API, web and mobile, performance and load testing, plus CI integrated quality gates and automation frameworks.',
     icon: CheckCircle2,
     accent: 'text-green-400',
     capabilities: [
@@ -136,10 +178,21 @@ export const services: Service[] = [
       'Test automation frameworks',
       'API / web / mobile testing',
       'Performance & load testing',
-      'CI-integrated quality gates',
+      'CI integrated quality gates',
       'Release readiness',
     ],
     outcomes: ['Fewer regressions', 'Confident releases', 'Faster feedback'],
+    buildToOrder:
+      'We shape the test strategy and automation frameworks around your product, stack and release process.',
+    inbuilt: {
+      title: 'Ready to use QA platform',
+      body: 'Onevia Labs offers an inbuilt QAaaS platform for test management and automation, so quality assurance can start quickly instead of after tooling is built.',
+      points: [
+        'Manual and automated testing in one place',
+        'CI integrated quality gates',
+        'Release readiness visibility',
+      ],
+    },
   },
   {
     slug: 'devopsaas',
@@ -148,7 +201,7 @@ export const services: Service[] = [
     tagline: 'Continuous delivery, managed',
     short: 'CI/CD, IaC, containers and observability.',
     description:
-      'CI/CD pipelines, Infrastructure as Code, containerization and Kubernetes, deployment automation, cloud management, and end-to-end observability.',
+      'CI/CD pipelines, Infrastructure as Code, containerization and Kubernetes, deployment automation, cloud management, and end to end observability.',
     icon: Terminal,
     accent: 'text-yellow-400',
     capabilities: [
@@ -160,6 +213,8 @@ export const services: Service[] = [
       'Observability',
     ],
     outcomes: ['Ship more often', 'Repeatable deploys', 'Clear visibility'],
+    buildToOrder:
+      'We build DevOps pipelines, infrastructure and tooling to your requirements: your cloud, your stack, your release process. Ready to build anything your delivery needs.',
   },
   {
     slug: 'sreaas',
@@ -179,7 +234,9 @@ export const services: Service[] = [
       'Resilience engineering',
       'Performance optimization',
     ],
-    outcomes: ['Higher uptime', 'Calmer on-call', 'Resilient systems'],
+    outcomes: ['Higher uptime', 'Calmer on call', 'Resilient systems'],
+    buildToOrder:
+      'We build reliability practices and tooling to your requirements: SLOs, alerting, incident processes and resilience work tailored to your systems. Ready to build anything your reliability goals call for.',
   },
   {
     slug: 'custom-engineering',
@@ -199,7 +256,9 @@ export const services: Service[] = [
       'API & platform design',
       'Code quality & reviews',
     ],
-    outcomes: ['Fit-for-purpose software', 'Reduced tech debt', 'Clear architecture'],
+    outcomes: ['Fit for purpose software', 'Reduced tech debt', 'Clear architecture'],
+    buildToOrder:
+      'Software built to your exact requirements, with architecture and code you can maintain.',
   },
   {
     slug: 'cloud-infrastructure',
@@ -220,6 +279,19 @@ export const services: Service[] = [
       'Compliance readiness',
     ],
     outcomes: ['Lower cloud spend', 'Elastic scale', 'Secure baseline'],
+    buildToOrder:
+      'Cloud foundations designed around your workloads, budget and compliance needs.',
+  },
+];
+
+export const consultingOffers = [
+  {
+    title: 'Consultation services',
+    body: 'Architecture reviews, technology and platform selection, AI adoption strategy, DevOps and reliability assessments. Practical advice from engineers who build and run this software.',
+  },
+  {
+    title: 'Expert resource persons',
+    body: 'Need specialists on your own team? We can provide experienced engineers and domain experts in SaaS, AI, QA, DevOps, SRE and cloud, embedded with your team for as long as you need.',
   },
 ];
 
@@ -313,7 +385,7 @@ export const tiers: Tier[] = [
     cadence: '',
     blurb: 'Tailored scope, SLAs and governance for scale.',
     features: [
-      'Dedicated multi-service team',
+      'Dedicated multi service team',
       'Custom SLAs & compliance',
       'Security & governance reviews',
       'Executive reporting',
@@ -331,15 +403,27 @@ export const faqs: Faq[] = [
   },
   {
     q: 'Can I start with just one service?',
-    a: 'Yes. Onevia is modular by design. Start with a single offering, say AIaaS or DevOpsaaS, and add more over time, all with shared context across one accountable team.',
+    a: 'Yes. Onevia Labs is modular by design. Start with a single offering, say AIaaS or DevOpsaaS, and add more over time, all with shared context across one accountable team.',
   },
   {
     q: 'How is pricing determined?',
     a: 'Pricing is scoped per project or offered as an ongoing service (retainer). After discovery, you receive a transparent proposal before committing.',
   },
   {
-    q: 'Are the case studies real?',
-    a: 'Onevia is an early-stage brand founded in 2026. Current examples are illustrative concepts; real customer case studies will be published as engagements complete.',
+    q: 'Can you build a SaaS platform to our requirements?',
+    a: 'Yes. We build Software as a Service platforms around your customer requirements, from multi tenant architecture and billing to onboarding and ongoing enhancement.',
+  },
+  {
+    q: 'Do you offer consulting or expert resource persons?',
+    a: 'Yes. Beyond delivery, we offer consultation services and can provide experienced specialists in a specific field, such as AI, QA, DevOps or SRE, to work with your team.',
+  },
+  {
+    q: 'Can you add AI to our existing product safely?',
+    a: 'Yes. Our AIaaS team has experience integrating AI into existing products with scoped data access, guardrails, evaluation and staged rollout. We also build agentic AI platforms.',
+  },
+  {
+    q: 'Where can I see projects you have delivered?',
+    a: 'See our Work page for delivered projects and case studies.',
   },
 ];
 
@@ -350,7 +434,7 @@ export const values = [
   },
   {
     title: 'Practical',
-    body: 'Outcome-focused engineering over hype. We ship things that work and keep working.',
+    body: 'Outcome focused engineering over hype. We ship things that work and keep working.',
   },
   {
     title: 'Responsible',

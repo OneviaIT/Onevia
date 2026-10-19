@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import { AtomLogo } from './AtomLogo';
+import { ShinyButton } from './ui';
 import { navItems } from '../data/site';
 
 export function Navbar() {
@@ -17,12 +18,12 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:pt-6">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between rounded-full border border-white/10 bg-black/60 px-5 py-3 shadow-2xl backdrop-blur-xl">
-        <Link to="/" aria-label="Onevia home" onClick={() => setOpen(false)}>
+      <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-black/60 px-5 py-3 shadow-2xl backdrop-blur-xl">
+        <Link to="/" aria-label="Onevia Labs home" onClick={() => setOpen(false)}>
           <AtomLogo size={34} wordmarkClassName="text-lg" />
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 xl:flex">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -39,21 +40,14 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link
+          <ShinyButton
             to="/contact"
-            className="hidden text-sm font-medium text-zinc-300 hover:text-white md:block"
+            className="hidden xl:inline-flex [&>span]:px-5 [&>span]:py-2 [&>span]:text-xs [&>span]:uppercase [&>span]:tracking-wider"
           >
-            Contact
-          </Link>
-          <Link
-            to="/contact"
-            className="group hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold uppercase tracking-wider text-white transition-all hover:border-accent/60 md:inline-flex"
-          >
-            Get Started
-            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-          </Link>
+            Get Started <ArrowRight className="h-3 w-3" />
+          </ShinyButton>
           <button
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white xl:hidden"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -65,7 +59,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="mx-auto mt-3 max-w-5xl rounded-3xl border border-white/10 bg-black/90 p-4 backdrop-blur-xl md:hidden">
+        <div className="mx-auto mt-3 max-h-[calc(100vh-6rem)] max-w-6xl overflow-y-auto rounded-3xl border border-white/10 bg-black/90 p-4 backdrop-blur-xl xl:hidden">
           <div className="flex flex-col">
             {navItems.map((item) => (
               <NavLink

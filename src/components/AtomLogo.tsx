@@ -92,8 +92,24 @@ export function AtomLogo({
       </svg>
 
       {withWordmark && (
-        <span className={`font-display font-extrabold tracking-tight ${wordmarkClassName}`}>
-          One<span className="text-accent">via</span>
+        <span
+          className={`inline-flex items-baseline font-display font-extrabold leading-none tracking-tight ${wordmarkClassName}`}
+        >
+          One
+          <span className="relative inline-block text-accent">
+            via
+            <span
+              aria-label="Labs"
+              className="absolute left-0 top-full flex w-full justify-between font-display font-medium uppercase tracking-normal text-white"
+              style={{ fontSize: '0.42em', marginTop: '0.15em' }}
+            >
+              {['L', 'A', 'B', 'S'].map((c) => (
+                <span key={c} aria-hidden="true">
+                  {c}
+                </span>
+              ))}
+            </span>
+          </span>
         </span>
       )}
     </span>

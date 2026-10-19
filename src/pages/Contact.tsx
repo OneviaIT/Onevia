@@ -1,23 +1,44 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type FormEvent, type ReactNode } from 'react';
 import { Mail, Phone, MapPin, ChevronRight, Check } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, Eyebrow } from '../components/ui';
 import { company, services, faqs } from '../data/site';
 import { useSeo } from '../lib/useSeo';
 
+const inputCls =
+  'w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-white transition-colors placeholder:text-zinc-600 focus:border-accent focus:outline-none';
+
+const phoneHref = `tel:${company.phone.replace(/[^\d+]/g, '')}`;
+
+function buildMailto(form: HTMLFormElement) {
+  const data = new FormData(form);
+  const field = (key: string) => String(data.get(key) ?? '').trim();
+  const subject = `Discovery call request from ${field('name')}`;
+  const body = [
+    `Name: ${field('name')}`,
+    `Email: ${field('email')}`,
+    `Company: ${field('company') || 'n/a'}`,
+    `Service interest: ${field('service') || 'n/a'}`,
+    '',
+    field('message'),
+  ].join('\n');
+  return `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 export function Contact() {
   useScrollReveal();
   useSeo({
-    title: 'Contact Onevia | Book a Discovery Call | Sri Lanka',
+    title: 'Contact Onevia Labs | Book a Discovery Call | Sri Lanka',
     description:
-      'Get in touch with Onevia in Colombo, Sri Lanka. Book a free discovery call to scope your SaaS, AI, cloud, DevOps, SRE, QA or custom engineering project.',
+      'Get in touch with Onevia Labs in Colombo, Sri Lanka. Book a free discovery call to scope your SaaS, AI, cloud, DevOps, SRE, QA or custom engineering project.',
     path: '/contact',
   });
   const [sent, setSent] = useState(false);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Placeholder: wire to a backend / form service when available.
+    // No backend yet: hand the message to the visitor's email client so it is never silently lost.
+    window.location.href = buildMailto(e.currentTarget);
     setSent(true);
   }
 
@@ -43,12 +64,12 @@ export function Contact() {
                 </span>
                 {company.email}
               </a>
-              <div className="flex items-center gap-4 text-zinc-300">
+              <a href={phoneHref} className="flex items-center gap-4 text-zinc-300 hover:text-white">
                 <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-accent">
                   <Phone className="h-5 w-5" />
                 </span>
                 {company.phone}
-              </div>
+              </a>
               <div className="flex items-center gap-4 text-zinc-300">
                 <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-accent">
                   <MapPin className="h-5 w-5" />
@@ -56,9 +77,6 @@ export function Contact() {
                 {company.location}
               </div>
             </div>
-            <p className="mt-6 font-mono text-xs uppercase tracking-widest text-zinc-600">
-              Contact details are placeholders pending launch.
-            </p>
           </Reveal>
 
           {/* Right: form */}
@@ -69,10 +87,10 @@ export function Contact() {
                   <span className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent/15 text-accent">
                     <Check className="h-8 w-8" />
                   </span>
-                  <h2 className="font-display text-2xl font-bold">Thanks, message received</h2>
+                  <h2 className="font-display text-2xl font-bold">Almost there</h2>
                   <p className="mt-3 max-w-xs text-zinc-400">
-                    This is a demo form. Once wired to a backend, we’ll reply within one business day
-                    to schedule your discovery call.
+                    Your email app should open with your message ready to send. If it did not, email us
+                    directly at {company.email}.
                   </p>
                   <button
                     onClick={() => setSent(false)}
@@ -85,17 +103,17 @@ export function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <Field label="Name" id="name">
-                      <input id="name" required className={inputCls} placeholder="Jane Doe" />
+                      <input id="name" name="name" autoComplete="name" required className={inputCls} placeholder="Jane Doe" />
                     </Field>
-                    <Field label="Work email" id="email">
-                      <input id="email" type="email" required className={inputCls} placeholder="jane@company.com" />
+                    <Field label="Email" id="email">
+                      <input id="email" name="email" type="email" autoComplete="email" required className={inputCls} placeholder="jane@example.com" />
                     </Field>
                   </div>
                   <Field label="Company" id="company">
-                    <input id="company" className={inputCls} placeholder="Company Inc." />
+                    <input id="company" name="company" autoComplete="organization" className={inputCls} placeholder="Company Inc." />
                   </Field>
                   <Field label="Service interest" id="service">
-                    <select id="service" className={`${inputCls} appearance-none`} defaultValue="">
+                    <select id="service" name="service" className={`${inputCls} appearance-none`} defaultValue="">
                       <option value="" disabled>
                         Select a service…
                       </option>
@@ -112,6 +130,7 @@ export function Contact() {
                   <Field label="Message" id="message">
                     <textarea
                       id="message"
+                      name="message"
                       rows={4}
                       required
                       className={`${inputCls} resize-none`}
@@ -138,7 +157,7 @@ export function Contact() {
             Prefer to stay in the loop?
           </h2>
           <p className="mx-auto mb-8 max-w-lg text-zinc-400">
-            Join the early-access list for product updates and availability.
+            Join the early access list for product updates and availability.
           </p>
           <form
             className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
@@ -181,9 +200,6 @@ export function Contact() {
   );
 }
 
-const inputCls =
-  'w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-white transition-colors placeholder:text-zinc-600 focus:border-accent focus:outline-none';
-
 function Field({
   label,
   id,
@@ -191,7 +207,7 @@ function Field({
 }: {
   label: string;
   id: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <label htmlFor={id} className="block">

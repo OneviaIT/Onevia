@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
 import { Mail, Phone, MapPin, ChevronRight, Check } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, Eyebrow } from '../components/ui';
@@ -9,6 +9,8 @@ const inputCls =
   'w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-white transition-colors placeholder:text-zinc-600 focus:border-accent focus:outline-none';
 
 const phoneHref = `tel:${company.phone.replace(/[^\d+]/g, '')}`;
+
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
 
 function buildMailto(form: HTMLFormElement) {
   const data = new FormData(form);
@@ -34,12 +36,56 @@ export function Contact() {
     path: '/contact',
   });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  useEffect(() => {
+    if (!sent) return;
+    const t = window.setTimeout(() => setSent(false), 5000);
+    return () => window.clearTimeout(t);
+  }, [sent]);
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // No backend yet: hand the message to the visitor's email client so it is never silently lost.
-    window.location.href = buildMailto(e.currentTarget);
-    setSent(true);
+    const form = e.currentTarget;
+    setError('');
+
+    if (!WEB3FORMS_KEY) {
+      window.location.href = buildMailto(form);
+      setSent(true);
+      return;
+    }
+
+    const data = new FormData(form);
+    const field = (key: string) => String(data.get(key) ?? '').trim();
+    const serviceSlug = field('service');
+    const serviceName = services.find((s) => s.slug === serviceSlug)?.name ?? serviceSlug;
+    setSending(true);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Discovery call request from ${field('name')}`,
+          from_name: 'Onevia Labs Website',
+          name: field('name'),
+          email: field('email'),
+          company: field('company') || 'n/a',
+          service_interest: serviceName || 'n/a',
+          message: field('message'),
+          botcheck: field('botcheck'),
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.success) throw new Error(json.message || 'Request failed');
+      form.reset();
+      setSent(true);
+    } catch {
+      setError(`Something went wrong. Please try again or email us at ${company.email}.`);
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -87,10 +133,11 @@ export function Contact() {
                   <span className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent/15 text-accent">
                     <Check className="h-8 w-8" />
                   </span>
-                  <h2 className="font-display text-2xl font-bold">Almost there</h2>
+                  <h2 className="font-display text-2xl font-bold">Thank you!</h2>
                   <p className="mt-3 max-w-xs text-zinc-400">
-                    Your email app should open with your message ready to send. If it did not, email us
-                    directly at {company.email}.
+                    {WEB3FORMS_KEY
+                      ? `We've received your message and will get back to you shortly. You can also reach us at ${company.email}.`
+                      : `Your email app should open with your message ready to send. If it did not, email us directly at ${company.email}.`}
                   </p>
                   <button
                     onClick={() => setSent(false)}
@@ -101,6 +148,7 @@ export function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <Field label="Name" id="name">
                       <input id="name" name="name" autoComplete="name" required className={inputCls} placeholder="Jane Doe" />
@@ -109,7 +157,7 @@ export function Contact() {
                       <input id="email" name="email" type="email" autoComplete="email" required className={inputCls} placeholder="jane@example.com" />
                     </Field>
                   </div>
-                  <Field label="Company" id="company">
+                  <Field label="Company (optional)" id="company">
                     <input id="company" name="company" autoComplete="organization" className={inputCls} placeholder="Company Inc." />
                   </Field>
                   <Field label="Service interest" id="service">
@@ -134,47 +182,26 @@ export function Contact() {
                       rows={4}
                       required
                       className={`${inputCls} resize-none`}
-                      placeholder="What are you building?"
+                      placeholder="We'd love to hear your story. Tell us about you, your idea, and where you'd like to go."
                     />
                   </Field>
                   <button
                     type="submit"
-                    className="w-full rounded-full bg-accent py-3.5 font-bold text-white transition-all hover:brightness-110 active:scale-95"
+                    disabled={sending}
+                    className="w-full rounded-full bg-accent py-3.5 font-bold text-white transition-all hover:brightness-110 active:scale-95 disabled:opacity-60"
                   >
-                    Request discovery call
+                    {sending ? 'Sending…' : 'Request discovery call'}
                   </button>
+                  {error && (
+                    <p role="alert" className="text-center text-sm text-red-400">
+                      {error}
+                    </p>
+                  )}
                 </form>
               )}
             </div>
           </Reveal>
         </div>
-      </section>
-
-      {/* Waitlist */}
-      <section className="mx-auto w-full max-w-4xl px-4 py-16 text-center">
-        <Reveal className="rounded-2xl border border-white/10 bg-white/[0.02] p-10">
-          <h2 className="mb-3 font-display text-3xl font-bold tracking-tighter">
-            Prefer to stay in the loop?
-          </h2>
-          <p className="mx-auto mb-8 max-w-lg text-zinc-400">
-            Join the early access list for product updates and availability.
-          </p>
-          <form
-            className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="email"
-              required
-              placeholder="your@email.com"
-              aria-label="Email address"
-              className="flex-1 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-white transition-colors placeholder:text-zinc-500 focus:border-accent focus:outline-none"
-            />
-            <button className="rounded-full bg-accent px-8 py-3.5 font-bold text-white transition-all hover:brightness-110 active:scale-95">
-              Join
-            </button>
-          </form>
-        </Reveal>
       </section>
 
       {/* FAQ */}

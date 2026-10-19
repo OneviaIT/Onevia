@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Hierarchical long-term memory network for an AI agent">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#140a22"/><stop offset="1" stop-color="#07070a"/></linearGradient>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ef233c" stop-opacity=".6"/><stop offset="1" stop-color="#ef233c" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <circle cx="320" cy="180" r="130" fill="url(#core)"/>
+  <g stroke="#a855f7" stroke-opacity=".5" stroke-width="2" fill="none">
+    <path d="M320 180L160 90M320 180L480 90M320 180L130 220M320 180L510 230M320 180L240 300M320 180L400 300"/>
+    <path d="M160 90L80 140M160 90L190 40M480 90L560 130M480 90L450 40M130 220L70 290M510 230L580 290M240 300L190 335M400 300L460 335" stroke-opacity=".3"/>
+  </g>
+  <g fill="#18181b" stroke="#a855f7" stroke-width="2">
+    <circle cx="160" cy="90" r="22"/><circle cx="480" cy="90" r="22"/><circle cx="130" cy="220" r="22"/><circle cx="510" cy="230" r="22"/><circle cx="240" cy="300" r="22"/><circle cx="400" cy="300" r="22"/>
+  </g>
+  <g fill="#a855f7" fill-opacity=".6"><circle cx="80" cy="140" r="9"/><circle cx="190" cy="40" r="9"/><circle cx="560" cy="130" r="9"/><circle cx="450" cy="40" r="9"/><circle cx="70" cy="290" r="9"/><circle cx="580" cy="290" r="9"/><circle cx="190" cy="335" r="9"/><circle cx="460" cy="335" r="9"/></g>
+  <circle cx="320" cy="180" r="48" fill="#18181b" stroke="#ef233c" stroke-width="4"/>
+  <g stroke="#ef233c" stroke-width="3" fill="none" stroke-linecap="round"><path d="M300 180q10-26 20-6t20-6M300 190q10 18 20 4t20 6"/></g>
+  <g font-family="monospace" font-size="11" fill="#fff" fill-opacity=".7" text-anchor="middle">
+    <text x="160" y="128">WHO</text><text x="480" y="128">PREFS</text><text x="130" y="258">TODAY</text><text x="510" y="268">WEEKS</text><text x="240" y="338">TOPICS</text><text x="400" y="338">FACTS</text>
+  </g>
+</svg>

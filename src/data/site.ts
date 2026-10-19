@@ -18,12 +18,169 @@ export type Project = {
   outcome?: string;
   tags: string[];
   image?: string;
+  video?: string;
   url?: string;
   year?: string;
 };
 
 // Add delivered projects here. The "Our work" section on Home renders from this list.
-export const projects: Project[] = [];
+export const projects: Project[] = [
+  {
+    title: 'Tender',
+    category: 'AI & Agents',
+    summary:
+      'Agentic commerce, settled instantly with PayPal. Every person and business gets an AI agent with its own PayPal-backed wallet and spending guardrails. Agents discover needs, negotiate offers with other agents, and settle payments automatically, all supervised from a real-time command center built on AG Grid.',
+    outcome: 'Legal tender (money) + to tender an offer (what agents do when they negotiate and buy).',
+    tags: ['Agentic AI', 'PayPal', 'AG Grid', 'Real-time'],
+    image: '/projects/tender.svg',
+    url: 'https://tender-web-686i.onrender.com',
+  },
+  {
+    title: 'Storage Metrics Analyzer',
+    client: 'Chrome Extension (Manifest V3)',
+    category: 'Software & Web',
+    summary:
+      'A lightweight Chrome extension for capturing and comparing browser storage usage across the UI modules of any web application.',
+    outcome: 'Pinpoints which modules bloat browser storage.',
+    tags: ['Chrome Extension', 'Manifest V3', 'Developer tooling'],
+    image: '/projects/storage-metrics.svg',
+    url: 'https://github.com/Shalinda99/storage-metrics-analyzer',
+  },
+  {
+    title: 'Waikkala Grinding Mills: Tea Shop',
+    client: 'React E-commerce',
+    category: 'Software & Web',
+    summary: 'A modern, responsive React e-commerce application for Ceylon tea products.',
+    outcome: 'A smooth online shopping experience for Ceylon tea.',
+    tags: ['React', 'E-commerce', 'Responsive'],
+    video: '/projects/waikkala.mp4',
+    url: 'https://github.com/Waikkala/wgm-frontend',
+  },
+  {
+    title: 'MemoryWeave',
+    category: 'AI & Agents',
+    summary:
+      'A persistent, hierarchical memory framework that gives Qwen-powered AI agents genuine long-term memory. The agent remembers who you are, what you prefer, and what you have discussed, across sessions, days and weeks.',
+    outcome: 'Agents that remember across sessions.',
+    tags: ['Agent memory', 'Qwen', 'LLM'],
+    image: '/projects/memoryweave.svg',
+    url: 'https://github.com/Shalinda99/memoryweave',
+  },
+  {
+    title: 'AI Chatbot for Existing Products',
+    category: 'AI & Agents',
+    summary:
+      'An AI chatbot integrated safely into a product that is already live, with scoped data access and guardrails, so users get instant answers without a rebuild.',
+    outcome: 'Instant answers inside your product, with no rebuild.',
+    tags: ['Chatbot', 'Product integration', 'Guardrails'],
+    image: '/projects/ai-chatbot.svg',
+  },
+  {
+    title: 'AI Incident Reporter for SaaS',
+    category: 'AI & Agents',
+    summary:
+      'An agentic assistant that reports and summarises incidents for any SaaS application, turning raw signals into clear, actionable reports for the team.',
+    outcome: 'Faster, clearer incident reports for every team.',
+    tags: ['Agentic AI', 'SaaS', 'Incident management'],
+    image: '/projects/incident-reporter.svg',
+  },
+  {
+    title: 'Realtime AI Voice Assistant',
+    category: 'AI & Agents',
+    summary:
+      'A realtime voice assistant powered by an agentic flow: it listens, reasons with tools, and responds naturally in conversation.',
+    outcome: 'Natural, hands-free conversations that get things done.',
+    tags: ['Voice AI', 'Agentic flow', 'Realtime'],
+    image: '/projects/voice-assistant.svg',
+  },
+  {
+    title: 'Caravan Web',
+    client: 'UI/UX Design (Figma)',
+    category: 'UI/UX Design',
+    summary: 'Web experience design for a caravan project, from layout and flows to the visual system.',
+    outcome: 'A cohesive visual system across every page.',
+    tags: ['Figma', 'Web design', 'UI/UX'],
+    image: '/projects/ux-caravan.png',
+    url: 'https://www.figma.com/design/aexvAKabZBECpJ8yv0pAxp/Caravan-Web-Project',
+  },
+  {
+    title: 'Virtual Help',
+    client: 'UI/UX Design (Figma)',
+    category: 'UI/UX Design',
+    summary: 'Interface design for a virtual help platform, focused on clear flows and approachable screens.',
+    outcome: 'Clear flows that make help easy to find.',
+    tags: ['Figma', 'Product design', 'UI/UX'],
+    image: '/projects/ux-virtualhelp.png',
+    url: 'https://www.figma.com/design/DoeUYINShAvfCkxZiThhrS/Virtual-Help-official',
+  },
+  {
+    title: 'Flexify',
+    client: 'UI/UX Design (Figma)',
+    category: 'UI/UX Design',
+    summary: 'Mobile app design for an exercise companion, built around simple, motivating interactions.',
+    outcome: 'Simple interactions that keep users motivated.',
+    tags: ['Figma', 'Mobile app', 'UI/UX'],
+    image: '/projects/ux-flexify.png',
+    url: 'https://www.figma.com/design/S6A0ZvbLkroSbehYU8BZlr/Flexify-Exercise-APP',
+  },
+  {
+    title: 'WattSaver',
+    client: 'UI/UX Design (Figma)',
+    category: 'UI/UX Design',
+    summary: 'Design for an energy-saving app that makes electricity usage easy to understand and act on.',
+    outcome: 'Energy usage that is easy to understand and act on.',
+    tags: ['Figma', 'Mobile app', 'UI/UX'],
+    image: '/projects/ux-wattsaver.png',
+    url: 'https://www.figma.com/design/sdO6kzFnptlayzU8H2Hwm9/MajesticHands3.0',
+  },
+  {
+    title: 'Hotel Booking System',
+    client: 'UI/UX Design (Figma)',
+    category: 'UI/UX Design',
+    summary: 'End-to-end booking experience design for a hotel management information system.',
+    outcome: 'A smooth path from search to confirmed booking.',
+    tags: ['Figma', 'Booking flow', 'UI/UX'],
+    image: '/projects/ux-hotel-booking.png',
+    url: 'https://www.figma.com/design/RypcgldglaIbGmJpPZp0Md/MIS_HotelBookingSystem',
+  },
+  {
+    title: 'SkyLink',
+    client: 'UI/UX Design (Figma)',
+    category: 'UI/UX Design',
+    summary: 'Interface design for a triathlon-focused platform with clean, energetic screens.',
+    outcome: 'Clean, energetic screens built for athletes.',
+    tags: ['Figma', 'Web design', 'UI/UX'],
+    image: '/projects/ux-skylink.png',
+    url: 'https://www.figma.com/design/U9ctIr2jFVWhpKj7i3LDBg/Triathlon',
+  },
+  {
+    title: 'Blender Animation: Motion Study',
+    client: 'Blender 3D',
+    category: '3D & Animation',
+    summary: 'A 3D animation sequence modelled, lit and rendered in Blender.',
+    outcome: 'Smooth, polished motion from concept to final render.',
+    tags: ['Blender', '3D modelling', 'Animation'],
+    video: '/projects/blender-animation-1.mp4',
+  },
+  {
+    title: 'Blender Animation: Scene Render',
+    client: 'Blender 3D',
+    category: '3D & Animation',
+    summary: 'A short animated scene built in Blender, from modelling and materials to final render.',
+    outcome: 'Detailed materials and lighting in every frame.',
+    tags: ['Blender', 'Rendering', 'Animation'],
+    video: '/projects/blender-animation-2.mp4',
+  },
+  {
+    title: 'Blender Animation: Visual Story',
+    client: 'Blender 3D',
+    category: '3D & Animation',
+    summary: 'A third Blender animation exploring camera movement, lighting and visual storytelling.',
+    outcome: 'Camera and light working together to tell a story.',
+    tags: ['Blender', 'Lighting', 'Animation'],
+    video: '/projects/blender-animation-3.mp4',
+  },
+];
 
 export const company = {
   name: 'Onevia Labs',

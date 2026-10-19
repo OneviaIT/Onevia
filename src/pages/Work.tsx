@@ -1,24 +1,58 @@
-import { useState } from 'react';
-import { ArrowRight, Briefcase } from 'lucide-react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import {
+  ArrowRight,
+  Briefcase,
+  Sparkles,
+  Code2,
+  PenTool,
+  Clapperboard,
+  LayoutGrid,
+  type LucideIcon,
+} from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, Eyebrow, ShinyButton, GhostButton } from '../components/ui';
 import { ProjectCard } from '../components/ProjectCard';
 import { projects } from '../data/site';
 import { useSeo } from '../lib/useSeo';
 
-const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))];
+const groups: { name: string; icon: LucideIcon }[] = [
+  { name: 'All', icon: LayoutGrid },
+  { name: 'AI & Agents', icon: Sparkles },
+  { name: 'Software & Web', icon: Code2 },
+  { name: 'UI/UX Design', icon: PenTool },
+  { name: '3D & Animation', icon: Clapperboard },
+];
 
 export function Work() {
+  useScrollReveal();
   const [cat, setCat] = useState('All');
-  useScrollReveal([cat]);
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [pill, setPill] = useState({ left: 0, width: 0 });
+
+  const visibleGroups = groups.filter(
+    (g) => g.name === 'All' || projects.some((p) => p.category === g.name),
+  );
+  const filtered = projects.filter((p) => cat === 'All' || p.category === cat);
+
+  useLayoutEffect(() => {
+    const el = tabRefs.current[cat];
+    if (el) setPill({ left: el.offsetLeft, width: el.offsetWidth });
+  }, [cat]);
+
+  useEffect(() => {
+    const onResize = () => {
+      const el = tabRefs.current[cat];
+      if (el) setPill({ left: el.offsetLeft, width: el.offsetWidth });
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [cat]);
   useSeo({
     title: 'Our Work | Delivered SaaS, AI, QA, DevOps & SRE Projects | Onevia Labs',
     description:
       'Explore projects delivered by Onevia Labs: SaaS platforms, AI and agentic solutions, QA automation, DevOps and SRE engagements built to customer requirements.',
     path: '/our-work',
   });
-
-  const filtered = projects.filter((p) => cat === 'All' || p.category === cat);
 
   return (
     <>
@@ -35,22 +69,44 @@ export function Work() {
         </Reveal>
       </section>
 
-      {projects.length > 0 && categories.length > 2 && (
+      {projects.length > 0 && (
         <section className="mx-auto w-full max-w-7xl px-4 pt-4">
-          <div className="flex flex-wrap gap-2">
-            {categories.map((c) => (
-              <button
-                key={c}
-                onClick={() => setCat(c)}
-                className={`rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
-                  cat === c
-                    ? 'border-accent bg-accent/10 text-accent'
-                    : 'border-white/10 text-zinc-400 hover:text-white'
-                }`}
-              >
-                {c}
-              </button>
-            ))}
+          <div className="max-w-full overflow-x-auto pb-2">
+            <div className="relative inline-flex rounded-full border border-white/10 bg-zinc-900/60 p-1.5 backdrop-blur">
+              <span
+                aria-hidden
+                className="absolute bottom-1.5 top-1.5 rounded-full bg-accent shadow-[0_0_30px_-4px_rgba(239,35,60,0.8)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                style={{ left: pill.left, width: pill.width }}
+              />
+              {visibleGroups.map(({ name, icon: Icon }) => {
+                const count =
+                  name === 'All' ? projects.length : projects.filter((p) => p.category === name).length;
+                const active = cat === name;
+                return (
+                  <button
+                    key={name}
+                    ref={(el) => {
+                      tabRefs.current[name] = el;
+                    }}
+                    onClick={() => setCat(name)}
+                    aria-pressed={active}
+                    className={`relative z-10 flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-semibold transition-colors duration-300 ${
+                      active ? 'text-white' : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    <Icon className={`h-4 w-4 transition-transform duration-500 ${active ? 'rotate-[360deg] scale-110' : ''}`} />
+                    {name}
+                    <span
+                      className={`rounded-full px-1.5 py-0.5 font-mono text-[10px] ${
+                        active ? 'bg-black/25' : 'bg-white/10'
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </section>
       )}
@@ -68,9 +124,13 @@ export function Work() {
         ) : (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p, i) => (
-              <Reveal key={p.title} delay={(i % 3) * 80}>
+              <div
+                key={`${cat}-${p.title}`}
+                className="project-in"
+                style={{ animationDelay: `${i * 70}ms` }}
+              >
                 <ProjectCard project={p} />
-              </Reveal>
+              </div>
             ))}
           </div>
         )}

@@ -1,17 +1,18 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, X, Star } from 'lucide-react';
+import { ArrowRight, Check, X, Star, Briefcase } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { ShinyButton, GhostButton, Reveal, SectionHeading, ArrowLink } from '../components/ui';
 import { TerminalSection } from '../components/TerminalSection';
-import { services, engagement, integrations, stats, company } from '../data/site';
+import { ProjectCard } from '../components/ProjectCard';
+import { services, engagement, integrations, stats, company, projects } from '../data/site';
 import { useSeo } from '../lib/useSeo';
 
 export function Home() {
   useScrollReveal();
   useSeo({
-    title: 'Onevia | Everything as a Service Technology Partner in Sri Lanka',
+    title: 'Onevia Labs | Everything as a Service Technology Partner in Sri Lanka',
     description:
-      'Onevia is a Sri Lanka based technology partner delivering Everything as a Service. One accountable team to build, scale, and operate your software across SaaS, AI, cloud, QA, DevOps, SRE and custom engineering.',
+      'Onevia Labs is a Sri Lanka based technology partner delivering Everything as a Service. One accountable team to build, scale, and operate your software across SaaS, AI, cloud, QA, DevOps, SRE and custom engineering.',
     path: '/',
   });
 
@@ -41,11 +42,11 @@ export function Home() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
             <span className="font-mono text-xs uppercase tracking-widest text-zinc-300">
-              Onevia · one partner, every service
+              Onevia Labs · one partner, every service
             </span>
           </div>
 
-          <h1 className="animate-fade-in-up mb-8 font-display text-6xl font-extrabold leading-[0.95] tracking-tighter md:text-8xl">
+          <h1 className="animate-fade-in-up mb-8 font-display text-5xl font-extrabold leading-[0.95] tracking-tighter sm:text-6xl md:text-8xl">
             <span className="bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent">
               <span className="relative inline-block text-accent">
                 Everything
@@ -69,7 +70,7 @@ export function Home() {
           </h1>
 
           <p className="animate-fade-in-up mx-auto mb-10 max-w-2xl text-lg text-zinc-400 md:text-xl">
-            Onevia is your one accountable software partner to build, scale, and operate across the
+            Onevia Labs is your one accountable software partner to build, scale, and operate across the
             entire software lifecycle, delivering reliable engineering outcomes for growing teams.
           </p>
 
@@ -152,6 +153,43 @@ export function Home() {
         </div>
       </section>
 
+      {/* ---------------- OUR WORK ---------------- */}
+      <section className="mx-auto w-full max-w-7xl px-4 py-24">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Our work"
+            title={
+              <>
+                What we've <span className="text-accent">delivered</span>
+              </>
+            }
+            sub="A look at the products and platforms we've built, scaled, and operated for our clients."
+          />
+        </Reveal>
+
+        {projects.length === 0 ? (
+          <Reveal className="mt-14 rounded-xl border border-dashed border-white/15 bg-zinc-900/30 p-12 text-center">
+            <Briefcase className="mx-auto mb-4 h-8 w-8 text-accent" />
+            <h3 className="mb-2 text-2xl font-bold">Case studies coming soon</h3>
+            <p className="mx-auto mb-6 max-w-md text-zinc-400">
+              We're preparing case studies for our delivered projects. Want to see relevant work now?
+            </p>
+            <ArrowLink to="/contact">Ask us for references</ArrowLink>
+          </Reveal>
+        ) : (
+          <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {projects.slice(0, 3).map((p, i) => (
+              <Reveal key={p.title} delay={(i % 3) * 80}>
+                <ProjectCard project={p} />
+              </Reveal>
+            ))}
+          </div>
+        )}
+        <Reveal className="mt-10">
+          <ArrowLink to="/our-work">View all projects</ArrowLink>
+        </Reveal>
+      </section>
+
       {/* ---------------- TERMINAL ---------------- */}
       <TerminalSection />
 
@@ -193,8 +231,8 @@ export function Home() {
               {[
                 'Separate contracts, bills, and SLAs',
                 'Context lost between specialists',
-                'Finger-pointing when things break',
-                'Hiring specialist teams in-house',
+                'Blame shifting when things break',
+                'Hiring specialist teams internally',
               ].map((t) => (
                 <li key={t} className="flex items-center gap-3">
                   <X className="h-5 w-5 shrink-0 text-zinc-600" /> {t}
@@ -207,14 +245,14 @@ export function Home() {
             className="rounded-xl border-2 border-accent bg-zinc-900/50 p-10 shadow-[0_0_40px_rgba(239,35,60,0.12)]"
           >
             <span className="font-mono text-xs uppercase tracking-widest text-accent">
-              With Onevia
+              With Onevia Labs
             </span>
             <h3 className="mb-8 mt-3 font-display text-3xl font-bold">One partner</h3>
             <ul className="space-y-4 text-white">
               {[
                 'One accountable team, one plan',
                 'Shared context across every service',
-                'Build, scale, and operate end-to-end',
+                'Build, scale, and operate end to end',
                 'Modular: scale up or down anytime',
               ].map((t) => (
                 <li key={t} className="flex items-center gap-3">

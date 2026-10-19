@@ -4,13 +4,14 @@ import { useScrollReveal } from '../lib/useScrollReveal';
 import { Reveal, SectionHeading, ShinyButton, Eyebrow } from '../components/ui';
 import { services } from '../data/site';
 import { useSeo } from '../lib/useSeo';
+import { ConsultingSection } from '../components/ConsultingSection';
 
 export function Services() {
   useScrollReveal();
   useSeo({
-    title: 'Services | SaaS, AI, Cloud, DevOps, SRE & QA | Onevia Sri Lanka',
+    title: 'Services | SaaS, AI, Cloud, DevOps, SRE & QA | Onevia Labs Sri Lanka',
     description:
-      'Explore Onevia services: SaaS, Backend, AI, QA, DevOps, SRE, cloud and custom software engineering. One accountable Sri Lanka based partner across the entire software lifecycle.',
+      'Explore Onevia Labs services: SaaS, Backend, AI, QA, DevOps, SRE, cloud and custom software engineering. One accountable Sri Lanka based partner across the entire software lifecycle.',
     path: '/services',
   });
 
@@ -26,6 +27,11 @@ export function Services() {
           <p className="mt-6 max-w-2xl text-lg text-zinc-400">
             Six core “as a Service” offerings plus custom engineering and cloud. Engage a single
             service or combine several into one integrated solution with shared context.
+          </p>
+          <p className="mt-4 max-w-2xl text-zinc-400">
+            We build SaaS, AI, QA, DevOps and SRE solutions to your requirements. For AI and QA we
+            also offer inbuilt platforms you can start with right away. We also offer consulting and
+            can provide expert resource persons for your team.
           </p>
         </Reveal>
       </section>
@@ -55,6 +61,8 @@ export function Services() {
           })}
         </div>
       </section>
+
+      <ConsultingSection />
 
       {/* Comparison */}
       <section className="w-full border-y border-white/5 bg-white/[0.02] py-24">
@@ -90,7 +98,7 @@ export function Services() {
               delay={100}
               className="rounded-xl border-2 border-accent bg-zinc-900/50 p-8 shadow-[0_0_40px_rgba(239,35,60,0.12)]"
             >
-              <h3 className="mb-6 font-display text-2xl font-bold">Onevia</h3>
+              <h3 className="mb-6 font-display text-2xl font-bold">Onevia Labs</h3>
               <ul className="space-y-4 text-white">
                 {[
                   'One accountable partner',

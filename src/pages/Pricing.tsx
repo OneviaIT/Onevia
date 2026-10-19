@@ -28,9 +28,9 @@ function Cell({ on }: { on: boolean }) {
 export function Pricing() {
   useScrollReveal();
   useSeo({
-    title: 'Pricing | Transparent Project & Partnership Plans | Onevia',
+    title: 'Pricing | Transparent Project & Partnership Plans | Onevia Labs',
     description:
-      'Transparent Onevia pricing: start with a single project or an ongoing partnership retainer. Get a clear scope, plan and price after a short discovery call.',
+      'Transparent Onevia Labs pricing: start with a single project or an ongoing partnership retainer. Get a clear scope, plan and price after a short discovery call.',
     path: '/pricing',
   });
   const [annual, setAnnual] = useState(true);

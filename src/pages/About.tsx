@@ -5,18 +5,18 @@ import { company, values, engagement } from '../data/site';
 import { useSeo } from '../lib/useSeo';
 
 const timeline = [
-  { year: '2026', title: 'Onevia founded', body: 'Started with one conviction: companies need one accountable partner, not a dozen vendors.' },
+  { year: '2026', title: 'Onevia Labs founded', body: 'Started with one conviction: companies need one accountable partner, not a dozen vendors.' },
   { year: '2026', title: 'Service catalog defined', body: 'Six core “as a Service” offerings plus custom engineering and cloud, built to combine.' },
-  { year: 'Now', title: 'Taking on partners', body: 'Working with early teams to build, modernize, scale, and operate software end-to-end.' },
+  { year: 'Now', title: 'Taking on partners', body: 'Working with early teams to build, modernize, scale, and operate software end to end.' },
   { year: 'Next', title: 'Published case studies', body: 'Real outcomes from real engagements, shared as our partnerships mature.' },
 ];
 
 export function About() {
   useScrollReveal();
   useSeo({
-    title: 'About Onevia | One Accountable Technology Partner in Sri Lanka',
+    title: 'About Onevia Labs | One Accountable Technology Partner in Sri Lanka',
     description:
-      'Onevia is a Sri Lanka based technology partner, consolidating software, AI, cloud, QA, DevOps and SRE into one accountable team so you can build, scale and operate without juggling vendors.',
+      'Onevia Labs is a Sri Lanka based technology partner, consolidating software, AI, cloud, QA, DevOps and SRE into one accountable team so you can build, scale and operate without juggling vendors.',
     path: '/about',
   });
 
@@ -24,7 +24,7 @@ export function About() {
     <>
       <section className="mx-auto w-full max-w-7xl px-4 pb-16 pt-36 md:pt-44">
         <Reveal>
-          <Eyebrow>About Onevia</Eyebrow>
+          <Eyebrow>About Onevia Labs</Eyebrow>
           <h1 className="max-w-4xl font-display text-5xl font-extrabold leading-[1.05] tracking-tighter md:text-7xl">
             One company. Every service. <span className="text-accent">One via.</span>
           </h1>
@@ -50,7 +50,7 @@ export function About() {
               Context gets lost in the gaps, accountability blurs, and coordination becomes the job.
             </p>
             <p>
-              Onevia acts as <span className="text-white">one partner</span> across the whole
+              Onevia Labs acts as <span className="text-white">one partner</span> across the whole
               lifecycle. Engage a single service or combine several into one integrated solution with
               shared context, and scale the relationship up or down as you grow.
             </p>

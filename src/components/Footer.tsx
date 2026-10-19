@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Linkedin } from 'lucide-react';
 import { AtomLogo } from './AtomLogo';
 import { company, services } from '../data/site';
 
@@ -10,6 +11,7 @@ const companyLinks = [
 
 const resourceLinks = [
   { label: 'Resources', to: '/resources' },
+  { label: 'Our Work', to: '/our-work' },
   { label: 'Pricing', to: '/pricing' },
   { label: 'Services', to: '/services' },
 ];
@@ -20,7 +22,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-5">
           <div className="col-span-2">
-            <Link to="/" aria-label="Onevia home">
+            <Link to="/" aria-label="Onevia Labs home">
               <AtomLogo size={52} wordmarkClassName="text-2xl" />
             </Link>
             <p className="mt-6 max-w-xs text-zinc-500">
@@ -75,24 +77,29 @@ export function Footer() {
         </div>
 
         {/* Giant wordmark */}
-        <div className="relative select-none py-6" aria-hidden="true">
-          <div className="text-stroke font-display text-[15vw] font-extrabold leading-none">
-            ONEVIA
+        <div className="relative select-none overflow-hidden py-6" aria-hidden="true">
+          <div
+            className="text-stroke flex items-baseline gap-[0.15em] whitespace-nowrap font-display font-extrabold leading-none"
+            style={{ fontSize: 'min(13vw, 11rem)' }}
+          >
+            <span>ONEVIA</span>
+            <span className="text-[0.4em]">LABS</span>
           </div>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 font-mono text-[10px] uppercase tracking-widest text-zinc-500 md:flex-row">
           <div>
-            © {company.founded} Onevia · Founded {company.founded} · All rights reserved
+            © {company.founded} Onevia Labs · Founded {company.founded} · All rights reserved
           </div>
-          <div className="flex gap-6">
-            <a href={company.social.x} className="hover:text-zinc-300">
-              X / Twitter
-            </a>
-            <a href={company.social.github} className="hover:text-zinc-300">
-              GitHub
-            </a>
-            <a href={company.social.linkedin} className="hover:text-zinc-300">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <a
+              href={company.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Onevia Labs on LinkedIn"
+              className="inline-flex items-center gap-2 hover:text-zinc-300"
+            >
+              <Linkedin className="h-4 w-4" />
               LinkedIn
             </a>
           </div>

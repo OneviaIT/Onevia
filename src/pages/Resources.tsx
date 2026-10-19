@@ -1,57 +1,56 @@
 import { useMemo, useState } from 'react';
+import { TransitionLink } from '../components/TransitionLink';
 import { ArrowRight, Search } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
-import { Reveal, Eyebrow } from '../components/ui';
+import { Reveal, Eyebrow, ArrowLink } from '../components/ui';
 import { useSeo } from '../lib/useSeo';
+import { PostCover } from '../components/PostCover';
+import { posts, featuredPost as featured } from '../data/posts';
 
-type Post = {
-  title: string;
-  excerpt: string;
-  category: string;
-  readTime: string;
-  featured?: boolean;
-};
+const categories = ['All', 'Strategy', 'SaaS', 'AIaaS', 'QAaaS', 'DevOpsaaS', 'SREaaS', 'Cloud', 'Custom', 'Consulting'];
 
-const posts: Post[] = [
+const topics = [
   {
-    title: 'Everything as a Service: why one partner beats a dozen vendors',
-    excerpt:
-      'The hidden cost of multi-vendor stacks, and how a single accountable partner with shared context changes delivery economics.',
-    category: 'Strategy',
-    readTime: '6 min',
-    featured: true,
+    title: 'SaaS platforms built to your requirements',
+    body: 'We design and build Software as a Service platforms around your customer requirements: multi tenant architecture, subscription billing, onboarding and continuous enhancement.',
   },
-  { title: 'A pragmatic blueprint for production RAG', excerpt: 'Retrieval, evaluation, and guardrails for assistants that actually ship.', category: 'AIaaS', readTime: '8 min' },
-  { title: 'SLOs without the theatre', excerpt: 'Error budgets your team will actually use to make decisions.', category: 'SREaaS', readTime: '5 min' },
-  { title: 'CI/CD that stays fast as you grow', excerpt: 'Pipeline patterns that scale from first commit to platform team.', category: 'DevOpsaaS', readTime: '7 min' },
-  { title: 'Modernizing legacy software, safely', excerpt: 'Strangler patterns and incremental delivery over risky rewrites.', category: 'Custom', readTime: '9 min' },
-  { title: 'Cloud cost without the surprises', excerpt: 'Right-sizing, visibility, and guardrails for predictable spend.', category: 'Cloud', readTime: '6 min' },
-  { title: 'Designing multi-tenant SaaS from day one', excerpt: 'Isolation, billing, and onboarding decisions that compound.', category: 'SaaS', readTime: '7 min' },
+  {
+    title: 'AI, agentic platforms and safe integration',
+    body: 'Our AIaaS engineers build agentic AI platforms and integrate AI into existing products safely. An inbuilt AIaaS platform is also available for a faster start.',
+  },
+  {
+    title: 'QA as a service',
+    body: 'Manual and automated testing for API, web and mobile, with CI quality gates, plus an inbuilt QAaaS platform.',
+  },
+  {
+    title: 'DevOps and SRE, built to order',
+    body: 'CI/CD, infrastructure as code, observability, SLOs and incident management, built around your stack and reliability goals.',
+  },
+  {
+    title: 'Consultation and expert resource persons',
+    body: 'Advice from engineers who build and run software, or experienced specialists embedded in your team when you need them.',
+  },
 ];
 
-const categories = ['All', 'Strategy', 'SaaS', 'AIaaS', 'DevOpsaaS', 'SREaaS', 'Cloud', 'Custom'];
+const rest = posts.filter((p) => p.slug !== featured.slug);
 
 export function Resources() {
-  useScrollReveal();
-  useSeo({
-    title: 'Resources | Insights on SaaS, AI, Cloud, DevOps & SRE | Onevia',
-    description:
-      'Practical guides and insights from Onevia on SaaS, AI, cloud, DevOps, SRE, QA and custom engineering, written to help teams build, scale and operate software reliably.',
-    path: '/resources',
-  });
   const [cat, setCat] = useState('All');
   const [query, setQuery] = useState('');
-
-  const featured = posts.find((p) => p.featured)!;
-  const rest = posts.filter((p) => !p.featured);
+  useScrollReveal([cat, query]);
+  useSeo({
+    title: 'Resources | Insights on SaaS, AI, Cloud, DevOps & SRE | Onevia Labs',
+    description:
+      'Guides from Onevia Labs on custom SaaS development, agentic AI platforms, safe AI integration, QAaaS, DevOps and SRE, plus consulting and expert resources, to help teams build, scale and operate software.',
+    path: '/resources',
+  });
 
   const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
     return rest.filter(
-      (p) =>
-        (cat === 'All' || p.category === cat) &&
-        (query === '' || p.title.toLowerCase().includes(query.toLowerCase())),
+      (p) => (cat === 'All' || p.category === cat) && (q === '' || p.title.toLowerCase().includes(q)),
     );
-  }, [cat, query, rest]);
+  }, [cat, query]);
 
   return (
     <>
@@ -78,9 +77,15 @@ export function Resources() {
       {/* Featured */}
       <section className="mx-auto w-full max-w-7xl px-4 py-8">
         <Reveal>
-          <article className="group grid grid-cols-1 overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/40 md:grid-cols-2">
-            <div className="relative min-h-[240px] bg-gradient-to-br from-noir via-black to-black">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,35,60,0.25),transparent_70%)]" />
+          <article className="group relative grid grid-cols-1 overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/40 transition-colors hover:border-white/20 md:grid-cols-2">
+            <div
+              className="relative min-h-[240px] overflow-hidden"
+              style={{ viewTransitionName: `post-cover-${featured.slug}` }}
+            >
+              <PostCover
+                art={featured.art}
+                className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+              />
               <span className="absolute left-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">
                 Featured
               </span>
@@ -93,12 +98,12 @@ export function Resources() {
                 {featured.title}
               </h2>
               <p className="mt-4 text-zinc-400">{featured.excerpt}</p>
-              <a
-                href="#"
-                className="mt-6 inline-flex items-center gap-2 font-medium text-white transition-all hover:gap-3"
+              <TransitionLink
+                to={`/resources/${featured.slug}`}
+                className="mt-6 inline-flex items-center gap-2 font-medium text-white transition-all after:absolute after:inset-0 hover:gap-3"
               >
                 Read article <ArrowRight className="h-4 w-4 text-accent" />
-              </a>
+              </TransitionLink>
             </div>
           </article>
         </Reveal>
@@ -132,13 +137,19 @@ export function Resources() {
         ) : (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p, i) => (
-              <Reveal key={p.title} delay={(i % 3) * 70}>
-                <a
-                  href="#"
-                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-zinc-900/40 transition-all hover:border-white/20"
+              <Reveal key={p.slug} delay={(i % 3) * 70}>
+                <TransitionLink
+                  to={`/resources/${p.slug}`}
+                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-zinc-900/40 transition-all hover:-translate-y-1 hover:border-white/20"
                 >
-                  <div className="relative h-40 bg-gradient-to-br from-noir via-black to-zinc-900">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(239,35,60,0.18),transparent_70%)]" />
+                  <div
+                    className="relative h-44 overflow-hidden"
+                    style={{ viewTransitionName: `post-cover-${p.slug}` }}
+                  >
+                    <PostCover
+                      art={p.art}
+                      className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
+                    />
                     <span className="absolute left-4 top-4 rounded-full bg-accent/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
                       {p.category}
                     </span>
@@ -150,11 +161,41 @@ export function Resources() {
                       {p.readTime} read
                     </span>
                   </div>
-                </a>
+                </TransitionLink>
               </Reveal>
             ))}
           </div>
         )}
+      </section>
+
+      {/* What we deliver */}
+      <section className="mx-auto w-full max-w-7xl px-4 py-16">
+        <Reveal>
+          <Eyebrow>What we deliver</Eyebrow>
+          <h2 className="max-w-3xl font-display text-3xl font-bold tracking-tighter md:text-5xl">
+            Software, AI and reliability, <span className="text-accent">built to your requirements</span>
+          </h2>
+          <p className="mt-4 max-w-3xl text-lg text-zinc-400">
+            Onevia Labs is a Sri Lanka based engineering partner. Everything we write about here is
+            something we build, run and support for clients.
+          </p>
+        </Reveal>
+        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {topics.map((t, i) => (
+            <Reveal
+              key={t.title}
+              delay={(i % 3) * 70}
+              className="rounded-xl border border-white/10 bg-zinc-900/40 p-6"
+            >
+              <h3 className="mb-2 font-display text-lg font-bold">{t.title}</h3>
+              <p className="text-sm text-zinc-400">{t.body}</p>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal className="mt-8 flex flex-wrap gap-6">
+          <ArrowLink to="/services">Explore our services</ArrowLink>
+          <ArrowLink to="/our-work">See our delivered projects</ArrowLink>
+        </Reveal>
       </section>
 
       {/* Newsletter */}

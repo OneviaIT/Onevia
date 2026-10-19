@@ -4,8 +4,8 @@ import { useSeo } from '../lib/useSeo';
 
 export function NotFound() {
   useSeo({
-    title: 'Page Not Found | Onevia',
-    description: 'The page you are looking for could not be found. Return to the Onevia homepage.',
+    title: 'Page Not Found | Onevia Labs',
+    description: 'The page you are looking for could not be found. Return to the Onevia Labs homepage.',
   });
   return (
     <section className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-4 text-center">

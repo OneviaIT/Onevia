@@ -1,6 +1,6 @@
-# Onevia — Everything as a Service
+# Onevia Labs — Everything as a Service
 
-Marketing website for **Onevia**, a single, consolidated technology partner delivering the full
+Marketing website for **Onevia Labs**, a single, consolidated technology partner delivering the full
 spectrum of modern software and infrastructure capabilities _"as a service"_ — build, scale, and
 operate with one accountable partner.
 
@@ -65,7 +65,7 @@ npm run lint     # eslint
 
 ## Notes / placeholders
 
-Onevia is an early-stage brand (founded 2025). The following are placeholders pending owner input:
+Onevia Labs is an early-stage brand (founded 2025). The following are placeholders pending owner input:
 contact email/phone/address, social URLs, team profiles, and customer case studies (current examples
 are clearly labelled illustrative). The contact and newsletter forms are front-end only — wire them
 to a backend or form service before launch.

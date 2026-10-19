@@ -80,4 +80,64 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+]633;E;for s in $(grep -oP "slug: '\\K[^']+" src/data/posts.ts);ec78bde3-f534-4992-8448-52304f553a17]633;C  <url>
+    <loc>https://onevia.lk/resources/everything-as-a-service-one-partner</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/production-rag-blueprint</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/slos-without-the-theatre</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/cicd-that-stays-fast-as-you-grow</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/modernizing-legacy-software-safely</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/cloud-cost-without-the-surprises</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/multi-tenant-saas-from-day-one</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/custom-saas-platform-around-your-requirements</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/agentic-ai-platforms-from-demo-to-dependable</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/adding-ai-to-an-existing-product-safely</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/qa-as-a-service-test-automation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://onevia.lk/resources/when-to-hire-a-consultant-or-an-embedded-expert</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

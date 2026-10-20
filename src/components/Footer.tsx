@@ -5,7 +5,7 @@ import { company, services } from '../data/site';
 
 const companyLinks = [
   { label: 'About', to: '/about' },
-  { label: 'Careers', to: '/careers' },
+  // { label: 'Careers', to: '/careers' },
   { label: 'Contact', to: '/contact' },
 ];
 

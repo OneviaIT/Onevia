@@ -117,7 +117,7 @@ export function About() {
             <ShinyButton to="/contact">
               Start a conversation <ArrowRight className="h-4 w-4" />
             </ShinyButton>
-            <GhostButton to="/careers">Join the team</GhostButton>
+            {/* <GhostButton to="/careers">Join the team</GhostButton> */}
           </div>
         </Reveal>
       </section>

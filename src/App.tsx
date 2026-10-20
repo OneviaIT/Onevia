@@ -11,7 +11,7 @@ import { Work } from './pages/Work';
 import { About } from './pages/About';
 import { Resources } from './pages/Resources';
 import { Article } from './pages/Article';
-import { Careers } from './pages/Careers';
+// import { Careers } from './pages/Careers';
 import { Contact } from './pages/Contact';
 import { NotFound } from './pages/NotFound';
 
@@ -31,7 +31,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/resources/:slug" element={<Article />} />
-          <Route path="/careers" element={<Careers />} />
+          {/* <Route path="/careers" element={<Careers />} /> */}
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -202,7 +202,7 @@ export const navItems: NavItem[] = [
   { label: 'Pricing', to: '/pricing' },
   { label: 'About', to: '/about' },
   { label: 'Resources', to: '/resources' },
-  { label: 'Careers', to: '/careers' },
+  // { label: 'Careers', to: '/careers' },
   { label: 'Contact', to: '/contact' },
 ];
 

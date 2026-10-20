@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { useScrollReveal } from '../lib/useScrollReveal';
-import { Reveal, ShinyButton, GhostButton, Eyebrow, SectionHeading } from '../components/ui';
+import { Reveal, ShinyButton, Eyebrow, SectionHeading } from '../components/ui';
 import { company, values, engagement } from '../data/site';
 import { useSeo } from '../lib/useSeo';
 

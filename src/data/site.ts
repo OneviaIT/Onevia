@@ -44,7 +44,6 @@ export const projects: Project[] = [
     outcome: 'Pinpoints which modules bloat browser storage.',
     tags: ['Chrome Extension', 'Manifest V3', 'Developer tooling'],
     image: '/projects/storage-metrics.svg',
-    url: 'https://github.com/Shalinda99/storage-metrics-analyzer',
   },
   {
     title: 'Waikkala Grinding Mills: Tea Shop',
@@ -54,7 +53,6 @@ export const projects: Project[] = [
     outcome: 'A smooth online shopping experience for Ceylon tea.',
     tags: ['React', 'E-commerce', 'Responsive'],
     video: '/projects/waikkala.mp4',
-    url: 'https://github.com/Waikkala/wgm-frontend',
   },
   {
     title: 'MemoryWeave',
@@ -64,7 +62,6 @@ export const projects: Project[] = [
     outcome: 'Agents that remember across sessions.',
     tags: ['Agent memory', 'Qwen', 'LLM'],
     image: '/projects/memoryweave.svg',
-    url: 'https://github.com/Shalinda99/memoryweave',
   },
   {
     title: 'AI Chatbot for Existing Products',
@@ -101,7 +98,6 @@ export const projects: Project[] = [
     outcome: 'A cohesive visual system across every page.',
     tags: ['Figma', 'Web design', 'UI/UX'],
     image: '/projects/ux-caravan.png',
-    url: 'https://www.figma.com/design/aexvAKabZBECpJ8yv0pAxp/Caravan-Web-Project',
   },
   {
     title: 'Virtual Help',
@@ -111,7 +107,6 @@ export const projects: Project[] = [
     outcome: 'Clear flows that make help easy to find.',
     tags: ['Figma', 'Product design', 'UI/UX'],
     image: '/projects/ux-virtualhelp.png',
-    url: 'https://www.figma.com/design/DoeUYINShAvfCkxZiThhrS/Virtual-Help-official',
   },
   {
     title: 'Flexify',
@@ -121,7 +116,6 @@ export const projects: Project[] = [
     outcome: 'Simple interactions that keep users motivated.',
     tags: ['Figma', 'Mobile app', 'UI/UX'],
     image: '/projects/ux-flexify.png',
-    url: 'https://www.figma.com/design/S6A0ZvbLkroSbehYU8BZlr/Flexify-Exercise-APP',
   },
   {
     title: 'WattSaver',
@@ -131,7 +125,6 @@ export const projects: Project[] = [
     outcome: 'Energy usage that is easy to understand and act on.',
     tags: ['Figma', 'Mobile app', 'UI/UX'],
     image: '/projects/ux-wattsaver.png',
-    url: 'https://www.figma.com/design/sdO6kzFnptlayzU8H2Hwm9/MajesticHands3.0',
   },
   {
     title: 'Hotel Booking System',
@@ -141,7 +134,6 @@ export const projects: Project[] = [
     outcome: 'A smooth path from search to confirmed booking.',
     tags: ['Figma', 'Booking flow', 'UI/UX'],
     image: '/projects/ux-hotel-booking.png',
-    url: 'https://www.figma.com/design/RypcgldglaIbGmJpPZp0Md/MIS_HotelBookingSystem',
   },
   {
     title: 'SkyLink',
@@ -151,7 +143,6 @@ export const projects: Project[] = [
     outcome: 'Clean, energetic screens built for athletes.',
     tags: ['Figma', 'Web design', 'UI/UX'],
     image: '/projects/ux-skylink.png',
-    url: 'https://www.figma.com/design/U9ctIr2jFVWhpKj7i3LDBg/Triathlon',
   },
   {
     title: 'Blender Animation: Motion Study',
